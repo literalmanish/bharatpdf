@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # BharatPDF / DesiPDF 🇮🇳📄
 
 > **India's Private, Instant & In-Browser Document Engine Suite**  
@@ -49,3 +50,6 @@
    npm run dev
    ```
 3. Open **`http://localhost:5173`** in your browser.
+=======
+# bharatpdf
+>>>>>>> 0b14af81202c310ead9284e094a705cf6c4f79bd
