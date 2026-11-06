@@ -1,0 +1,19 @@
+{
+  "name": "DesiPDF — Sarkari & Citizen Suite",
+  "short_name": "DesiPDF",
+  "description": "32-in-1 Offline Document Suite & Sarkari Presets",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0f172a",
+  "theme_color": "#D71920",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "48x48 72x72 96x96 128x128 256x256 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
