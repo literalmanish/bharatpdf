@@ -18,18 +18,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CSS & Lucide Icons -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Local Stylesheet (Compiled by Vite) -->
+  <link rel="stylesheet" href="/src/index.css" />
 
-  <!-- Client-Side PDF & Vision Libraries -->
-  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <!-- Offline Local PDF & Icon Libraries (No Internet Connection Required) -->
+  <script src="./vendor/lucide.min.js"></script>
+  <script src="./vendor/pdf-lib.min.js"></script>
+  <script src="./vendor/pdf.min.js"></script>
 
   <script>
     if (window.pdfjsLib) {
-      window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = './vendor/pdf.worker.min.js';
     }
   </script>
 
@@ -487,17 +486,26 @@
 
       <!-- Live Camera Container (Collapsible) -->
       <div id="liveCamBox" class="hidden p-4 rounded-2xl bg-[#171920] border border-[#272a36] space-y-3">
-        <video id="t_video" class="w-full h-56 bg-black rounded-xl object-cover" autoplay playsinline></video>
-        <div class="flex gap-2">
-          <button onclick="Engines.snapCamera()" class="flex-1 btn-brand-primary py-2.5 text-xs font-bold flex items-center justify-center gap-1.5">
+        <video id="t_video" class="w-full h-56 bg-black rounded-xl object-cover" autoplay playsinline muted></video>
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="Engines.snapCamera()" class="btn-brand-primary py-2.5 text-xs font-bold flex items-center justify-center gap-1.5 shadow-lg">
             <i data-lucide="camera" class="w-4 h-4"></i>
             <span>Capture Sheet</span>
           </button>
-          <button onclick="Engines.compileSnaps()" class="flex-1 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold py-2.5">
-            Compile to PDF
+          <input type="file" id="t_gallery_scan" multiple accept="image/*" class="hidden" onchange="Engines.handleGalleryScan(this)" />
+          <button onclick="document.getElementById('t_gallery_scan').click()" class="rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold py-2.5 flex items-center justify-center gap-1.5">
+            <i data-lucide="image" class="w-4 h-4"></i>
+            <span>From Gallery</span>
           </button>
         </div>
-        <p id="t_snaps_count" class="text-center text-[11px] font-mono text-neutral-400">0 snaps queued</p>
+        <button onclick="Engines.compileSnaps()" class="w-full rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-2.5 flex items-center justify-center gap-1.5 shadow-lg">
+          <i data-lucide="file-check" class="w-4 h-4"></i>
+          <span>Compile to PDF</span>
+        </button>
+        <div class="flex justify-between items-center text-[11px] font-mono text-neutral-400">
+          <span id="t_snaps_count">0 snaps queued</span>
+          <button onclick="Engines.closeCamera()" class="text-red-400 hover:underline">Close Camera</button>
+        </div>
       </div>
 
       <!-- Floating Action Button (FAB) at Bottom Right (Exactly as Screenshot 6) -->
@@ -840,6 +848,16 @@
       cameraShots: []
     };
 
+    function safeCreateIcons() {
+      try {
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+          window.lucide.createIcons();
+        }
+      } catch (e) {
+        console.warn("Lucide notice:", e);
+      }
+    }
+
     const Nav = {
       setTab(tabId) {
         State.activeTab = tabId;
@@ -855,17 +873,17 @@
         if (layoutBtn) layoutBtn.classList.toggle('hidden', tabId !== 'tools');
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        lucide.createIcons();
+        safeCreateIcons();
       }
     };
 
     const AuthModal = {
-      open() { document.getElementById('authModal').classList.remove('hidden'); lucide.createIcons(); },
+      open() { document.getElementById('authModal').classList.remove('hidden'); safeCreateIcons(); },
       close() { document.getElementById('authModal').classList.add('hidden'); }
     };
 
     const BinModal = {
-      open() { document.getElementById('binModal').classList.remove('hidden'); lucide.createIcons(); },
+      open() { document.getElementById('binModal').classList.remove('hidden'); safeCreateIcons(); },
       close() { document.getElementById('binModal').classList.add('hidden'); }
     };
 
@@ -892,20 +910,86 @@
         msgEl.textContent = message;
         el.classList.remove('translate-y-20', 'opacity-0');
         if (this.timer) clearTimeout(this.timer);
-        this.timer = setTimeout(() => el.classList.add('translate-y-20', 'opacity-0'), 2500);
+        this.timer = setTimeout(() => el.classList.add('translate-y-20', 'opacity-0'), 2800);
       }
     };
 
     const FileUtils = {
       download(data, filename, mime = 'application/pdf') {
-        const blob = new Blob([data], { type: mime });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 200);
+        try {
+          let base64 = "";
+          if (typeof data === 'string') {
+            if (data.startsWith('data:')) {
+              base64 = data.substring(data.indexOf(',') + 1);
+            } else {
+              base64 = data;
+            }
+          } else {
+            const bytes = data instanceof Uint8Array ? data : new Uint8Array(data);
+            let binary = '';
+            const chunkSize = 8192;
+            for (let i = 0; i < bytes.length; i += chunkSize) {
+              const chunk = bytes.subarray(i, i + chunkSize);
+              binary += String.fromCharCode.apply(null, chunk);
+            }
+            base64 = window.btoa(binary);
+          }
+
+          // 1. Native Android Bridge (Saves & invokes native Android share/open sheet)
+          if (window.AndroidBridge && typeof window.AndroidBridge.saveAndShareFile === 'function') {
+            window.AndroidBridge.saveAndShareFile(base64, filename, mime);
+            Toast.show("Saved & opened: " + filename);
+            return;
+          }
+
+          // 2. Mobile Browser Web Share API
+          if (navigator.canShare && window.File) {
+            try {
+              let blob;
+              if (typeof data === 'string' && data.startsWith('data:')) {
+                const b64 = data.substring(data.indexOf(',') + 1);
+                const bs = atob(b64);
+                const u8 = new Uint8Array(bs.length);
+                for (let i = 0; i < bs.length; i++) u8[i] = bs.charCodeAt(i);
+                blob = new Blob([u8], { type: mime });
+              } else if (data instanceof Blob) {
+                blob = data;
+              } else {
+                blob = new Blob([data], { type: mime });
+              }
+              const fileObj = new File([blob], filename, { type: mime });
+              if (navigator.canShare({ files: [fileObj] })) {
+                navigator.share({ files: [fileObj], title: filename }).catch(() => {});
+              }
+            } catch (_) {}
+          }
+
+          // 3. Desktop / Fallback Anchor Click
+          let blob;
+          if (typeof data === 'string' && data.startsWith('data:')) {
+            const b64 = data.substring(data.indexOf(',') + 1);
+            const bs = atob(b64);
+            const u8 = new Uint8Array(bs.length);
+            for (let i = 0; i < bs.length; i++) u8[i] = bs.charCodeAt(i);
+            blob = new Blob([u8], { type: mime });
+          } else if (data instanceof Blob) {
+            blob = data;
+          } else {
+            blob = new Blob([data], { type: mime });
+          }
+
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 800);
+          Toast.show("Exported: " + filename);
+        } catch (err) {
+          console.error("Export error:", err);
+          Toast.show("Export error: " + err.message);
+        }
       },
       async readBuffer(file) {
         if (!file) throw new Error("Please select a file.");
@@ -921,7 +1005,7 @@
       init() {
         this.renderCategoryBar();
         this.renderToolsGrid();
-        lucide.createIcons();
+        safeCreateIcons();
       },
 
       toggleTheme() {
@@ -977,7 +1061,7 @@
             <span class="text-[11px] font-semibold text-white leading-tight line-clamp-2">${t.name}</span>
           </div>
         `).join('');
-        lucide.createIcons();
+        safeCreateIcons();
       },
 
       openPresetModal(type) {
@@ -1038,7 +1122,7 @@
               <button onclick="Engines.applyKycStamp()" class="w-full btn-brand-primary py-3 font-bold uppercase">Stamp &amp; Export</button>
             </div>`;
         }
-        lucide.createIcons();
+        safeCreateIcons();
       },
 
       openTool(id) {
@@ -1051,7 +1135,7 @@
         const body = document.getElementById('modalToolBody');
         body.innerHTML = this.getToolContent(tool);
         document.getElementById('toolModal').classList.remove('hidden');
-        lucide.createIcons();
+        safeCreateIcons();
 
         if (id === 24) this.initSignaturePad();
       },
@@ -1069,38 +1153,75 @@
           case 1:
             return `
               <div class="space-y-3 text-xs font-mono">
-                <label class="text-white">Select multiple PDFs to merge:</label>
+                <label class="text-white font-bold block">Select multiple PDFs to merge:</label>
                 <input type="file" id="t_file" multiple accept="application/pdf" class="w-full text-xs text-neutral-400" />
-                <button onclick="Engines.merge()" class="w-full btn-brand-primary py-3 font-bold uppercase">Merge All PDFs</button>
+                <button onclick="Engines.merge()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Merge All PDFs</button>
               </div>`;
           case 2:
             return `
               <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select PDF to split:</label>
                 <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
-                <input type="text" id="t_range" placeholder="Pages (e.g. 1-2 or 1,3)" class="w-full p-2.5 border border-[#272a36] rounded-xl bg-neutral-900 text-white" />
-                <button onclick="Engines.split()" class="w-full btn-brand-primary py-3 font-bold uppercase">Split PDF</button>
+                <label class="text-white block">Page Range (e.g. 1-2 or 1,3):</label>
+                <input type="text" id="t_range" placeholder="e.g. 1-2" class="w-full p-2.5 border border-[#272a36] rounded-xl bg-neutral-900 text-white" />
+                <button onclick="Engines.split()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Split &amp; Save</button>
+              </div>`;
+          case 3:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select PDF:</label>
+                <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
+                <label class="text-white block">Pages to remove (e.g. 2, 4):</label>
+                <input type="text" id="t_remove_pages" placeholder="e.g. 2, 4" class="w-full p-2.5 border border-[#272a36] rounded-xl bg-neutral-900 text-white" />
+                <button onclick="Engines.removePages()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Remove Specified Pages</button>
+              </div>`;
+          case 4:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select PDF to extract text:</label>
+                <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
+                <button onclick="Engines.extractText()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Extract Plain Text</button>
               </div>`;
           case 7:
             return `
               <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select PDF to compress:</label>
                 <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
-                <button onclick="Engines.compress()" class="w-full btn-brand-primary py-3 font-bold uppercase">Compress PDF</button>
+                <button onclick="Engines.compress()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Compress PDF</button>
+              </div>`;
+          case 8:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select broken PDF to reconstruct:</label>
+                <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
+                <button onclick="Engines.repair()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Repair &amp; Rebuild PDF</button>
               </div>`;
           case 9:
             return `
               <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select Images (JPG/PNG):</label>
                 <input type="file" id="t_file" multiple accept="image/*" class="w-full text-xs text-neutral-400" />
-                <button onclick="Engines.imagesToPdf()" class="w-full btn-brand-primary py-3 font-bold uppercase">Convert Images to PDF</button>
+                <button onclick="Engines.imagesToPdf()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Convert Images to PDF</button>
+              </div>`;
+          case 10:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Upload text file or type below:</label>
+                <input type="file" id="t_file" accept="text/plain,.txt" class="w-full text-xs text-neutral-400" />
+                <textarea id="t_custom_text" rows="3" placeholder="Type document content..." class="w-full p-2.5 border border-[#272a36] rounded-xl bg-neutral-900 text-white"></textarea>
+                <button onclick="Engines.textToPdf()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Convert to PDF</button>
               </div>`;
           case 15:
             return `
               <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select PDF to convert to image:</label>
                 <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
-                <button onclick="Engines.pdfToImages()" class="w-full btn-brand-primary py-3 font-bold uppercase">Export Page to JPG</button>
+                <button onclick="Engines.pdfToImages()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Export Page to JPG</button>
               </div>`;
           case 20:
             return `
               <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select PDF to rotate:</label>
                 <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
                 <div class="flex gap-2">
                   <button onclick="Engines.rotate(90)" class="flex-1 p-2.5 rounded-xl bg-neutral-800 text-white font-bold">+90°</button>
@@ -1111,30 +1232,57 @@
           case 21:
             return `
               <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select PDF:</label>
                 <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
-                <button onclick="Engines.addPageNumbers()" class="w-full btn-brand-primary py-3 font-bold uppercase">Add Page Numbers</button>
+                <button onclick="Engines.addPageNumbers()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Add Page Numbers</button>
               </div>`;
           case 22:
             return `
               <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select PDF:</label>
                 <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
                 <input type="text" id="t_watermark" placeholder="Watermark text (e.g. CONFIDENTIAL)" class="w-full p-2.5 border border-[#272a36] rounded-xl bg-neutral-900 text-white" />
-                <button onclick="Engines.addWatermark()" class="w-full btn-brand-primary py-3 font-bold uppercase">Stamp Watermark</button>
+                <button onclick="Engines.addWatermark()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Stamp Watermark</button>
               </div>`;
           case 24:
             return `
               <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Draw your signature:</label>
                 <canvas id="t_sign_canvas" width="400" height="150" class="w-full border border-[#272a36] bg-white rounded-xl cursor-crosshair"></canvas>
                 <div class="flex justify-between">
                   <button onclick="Engines.clearSign()" class="px-3 py-1.5 rounded-lg bg-neutral-800 text-white">Clear</button>
-                  <button onclick="Engines.saveSign()" class="btn-brand-primary px-3 py-1.5 font-bold">Save PNG</button>
+                  <button onclick="Engines.saveSign()" class="btn-brand-primary px-3 py-1.5 font-bold shadow-lg">Save PNG</button>
+                </div>
+              </div>`;
+          case 32:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Choose Sarkari Portal Preset:</label>
+                <div class="grid grid-cols-2 gap-2">
+                  <button onclick="App.openPresetModal('upsc')" class="p-3 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-left">
+                    <div class="text-red-400 font-bold text-xs">UPSC CSE</div>
+                    <div class="text-[10px] text-neutral-400">350x350 &lt;50KB</div>
+                  </button>
+                  <button onclick="App.openPresetModal('ssc')" class="p-3 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-left">
+                    <div class="text-red-400 font-bold text-xs">SSC CGL</div>
+                    <div class="text-[10px] text-neutral-400">Strict &lt;50KB</div>
+                  </button>
+                  <button onclick="App.openPresetModal('nta')" class="p-3 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-left">
+                    <div class="text-red-400 font-bold text-xs">NTA NEET</div>
+                    <div class="text-[10px] text-neutral-400">Dossier &lt;300KB</div>
+                  </button>
+                  <button onclick="App.openPresetModal('kyc')" class="p-3 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-left">
+                    <div class="text-red-400 font-bold text-xs">KYC Masker</div>
+                    <div class="text-[10px] text-neutral-400">Aadhaar Redact</div>
+                  </button>
                 </div>
               </div>`;
           default:
             return `
               <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select PDF or Image:</label>
                 <input type="file" id="t_file" accept="application/pdf,image/*" class="w-full text-xs text-neutral-400" />
-                <button onclick="Engines.generalExecute()" class="w-full btn-brand-primary py-3 font-bold uppercase">Process File</button>
+                <button onclick="Engines.generalExecute()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Process Document</button>
               </div>`;
         }
       },
@@ -1190,7 +1338,6 @@
             pages.forEach(p => out.addPage(p));
           }
           FileUtils.download(await out.save(), "merged.pdf");
-          Toast.show("Merged successfully!");
         } catch (e) { Toast.show(e.message); }
       },
 
@@ -1209,7 +1356,17 @@
           const pages = await out.copyPages(doc, indices);
           pages.forEach(p => out.addPage(p));
           FileUtils.download(await out.save(), "split.pdf");
-          Toast.show("Split complete!");
+        } catch (e) { Toast.show(e.message); }
+      },
+
+      async removePages() {
+        try {
+          const { doc } = await this.getDoc();
+          const toRemoveStr = document.getElementById('t_remove_pages')?.value || "";
+          const pagesToRemove = toRemoveStr.split(',').map(s => parseInt(s.trim(), 10) - 1).filter(n => !isNaN(n) && n >= 0 && n < doc.getPageCount());
+          if (!pagesToRemove.length) return Toast.show("Specify valid page numbers to remove.");
+          pagesToRemove.sort((a, b) => b - a).forEach(idx => doc.removePage(idx));
+          FileUtils.download(await doc.save(), "pages_removed.pdf");
         } catch (e) { Toast.show(e.message); }
       },
 
@@ -1218,7 +1375,14 @@
           const { doc } = await this.getDoc();
           const bytes = await doc.save({ useObjectStreams: true });
           FileUtils.download(bytes, "compressed.pdf");
-          Toast.show("Compressed document downloaded!");
+        } catch (e) { Toast.show(e.message); }
+      },
+
+      async repair() {
+        try {
+          const { doc } = await this.getDoc();
+          const bytes = await doc.save({ useObjectStreams: false });
+          FileUtils.download(bytes, "repaired_document.pdf");
         } catch (e) { Toast.show(e.message); }
       },
 
@@ -1234,7 +1398,6 @@
             p.drawImage(img, { x: 20, y: 20, width: 555.28, height: 801.89 });
           }
           FileUtils.download(await doc.save(), "images.pdf");
-          Toast.show("Converted to PDF!");
         } catch (e) { Toast.show(e.message); }
       },
 
@@ -1248,11 +1411,7 @@
           const canvas = document.createElement('canvas');
           canvas.width = viewport.width; canvas.height = viewport.height;
           await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
-          const a = document.createElement('a');
-          a.download = "page_1.jpg";
-          a.href = canvas.toDataURL('image/jpeg', 0.9);
-          a.click();
-          Toast.show("Page exported to JPG!");
+          FileUtils.download(canvas.toDataURL('image/jpeg', 0.9), "page_1.jpg", "image/jpeg");
         } catch (e) { Toast.show(e.message); }
       },
 
@@ -1261,7 +1420,6 @@
           const { doc } = await this.getDoc();
           doc.getPages().forEach(p => p.setRotation(PDFLib.degrees((p.getRotation().angle + deg) % 360)));
           FileUtils.download(await doc.save(), "rotated.pdf");
-          Toast.show("Rotated!");
         } catch (e) { Toast.show(e.message); }
       },
 
@@ -1274,7 +1432,6 @@
             p.drawText(`Page ${idx + 1} of ${count}`, { x: p.getWidth() / 2 - 30, y: 25, size: 9, font });
           });
           FileUtils.download(await doc.save(), "paginated.pdf");
-          Toast.show("Page numbers added!");
         } catch (e) { Toast.show(e.message); }
       },
 
@@ -1294,7 +1451,45 @@
             });
           });
           FileUtils.download(await doc.save(), "watermarked.pdf");
-          Toast.show("Watermark applied!");
+        } catch (e) { Toast.show(e.message); }
+      },
+
+      async extractText() {
+        try {
+          const input = document.getElementById('t_file');
+          const file = input?.files[0];
+          if (!file) return Toast.show("Select a PDF first.");
+          const buf = await FileUtils.readBuffer(file);
+          const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+          let fullText = "";
+          for (let i = 1; i <= pdf.numPages; i++) {
+            const page = await pdf.getPage(i);
+            const content = await page.getTextContent();
+            const pageText = content.items.map(item => item.str).join(' ');
+            fullText += `--- PAGE ${i} ---\n` + pageText + "\n\n";
+          }
+          FileUtils.download(fullText, "extracted_text.txt", "text/plain");
+        } catch (e) { Toast.show(e.message); }
+      },
+
+      async textToPdf() {
+        try {
+          const input = document.getElementById('t_file');
+          let text = document.getElementById('t_custom_text')?.value || "";
+          if (input?.files[0]) {
+            text = await FileUtils.readText(input.files[0]);
+          }
+          if (!text.trim()) return Toast.show("Enter or select text first.");
+          const doc = await PDFLib.PDFDocument.create();
+          const page = doc.addPage([595.28, 841.89]);
+          const font = await doc.embedFont(PDFLib.StandardFonts.Helvetica);
+          const lines = text.split('\n').slice(0, 45);
+          let y = 800;
+          lines.forEach(line => {
+            page.drawText(line.substring(0, 80), { x: 40, y, size: 11, font });
+            y -= 16;
+          });
+          FileUtils.download(await doc.save(), "text_document.pdf");
         } catch (e) { Toast.show(e.message); }
       },
 
@@ -1305,33 +1500,71 @@
 
       saveSign() {
         const c = document.getElementById('t_sign_canvas');
-        const a = document.createElement('a');
-        a.download = "signature.png";
-        a.href = c.toDataURL('image/png');
-        a.click();
-        Toast.show("Signature PNG saved!");
+        if (c) {
+          FileUtils.download(c.toDataURL('image/png'), "signature.png", "image/png");
+        }
       },
 
       async startCamera() {
         try {
-          State.cameraStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-          document.getElementById('t_video').srcObject = State.cameraStream;
-        } catch (e) { Toast.show("Camera permission needed"); }
+          const liveCamBox = document.getElementById('liveCamBox');
+          if (liveCamBox) liveCamBox.classList.remove('hidden');
+          State.cameraStream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: { ideal: 'environment' } },
+            audio: false
+          });
+          const v = document.getElementById('t_video');
+          if (v) {
+            v.srcObject = State.cameraStream;
+            v.play().catch(() => {});
+          }
+          Toast.show("Camera ready. Tap capture to take photo.");
+        } catch (e) {
+          Toast.show("Camera note: " + (e.message || "Please grant permission or use 'From Gallery'"));
+        }
+      },
+
+      closeCamera() {
+        const liveCamBox = document.getElementById('liveCamBox');
+        if (liveCamBox) liveCamBox.classList.add('hidden');
+        if (State.cameraStream) {
+          State.cameraStream.getTracks().forEach(t => t.stop());
+          State.cameraStream = null;
+        }
       },
 
       snapCamera() {
         const v = document.getElementById('t_video');
-        if (!v || !v.videoWidth) return Toast.show("Start camera first");
+        if (!v || !v.videoWidth) return Toast.show("Camera active. Wait 1 sec and tap capture again.");
         const canvas = document.createElement('canvas');
         canvas.width = v.videoWidth; canvas.height = v.videoHeight;
         canvas.getContext('2d').drawImage(v, 0, 0);
         State.cameraShots.push(canvas.toDataURL('image/jpeg', 0.85));
-        document.getElementById('t_snaps_count').textContent = `${State.cameraShots.length} snaps queued`;
-        Toast.show("Page snapped!");
+        const countEl = document.getElementById('t_snaps_count');
+        if (countEl) countEl.textContent = `${State.cameraShots.length} snap(s) queued`;
+        Toast.show("Sheet captured!");
+      },
+
+      async handleGalleryScan(input) {
+        const files = Array.from(input.files || []);
+        if (!files.length) return;
+        Toast.show(`Loading ${files.length} image(s)...`);
+        for (const file of files) {
+          const dataUrl = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onload = e => resolve(e.target.result);
+            reader.readAsDataURL(file);
+          });
+          State.cameraShots.push(dataUrl);
+        }
+        const countEl = document.getElementById('t_snaps_count');
+        if (countEl) countEl.textContent = `${State.cameraShots.length} snap(s) queued`;
+        Toast.show("Images queued. Tap 'Compile to PDF'!");
       },
 
       async compileSnaps() {
-        if (!State.cameraShots.length) return Toast.show("Take at least 1 photo");
+        if (!State.cameraShots.length) return Toast.show("Take photo or add from gallery first.");
+        Toast.show("Compiling PDF...");
         const doc = await PDFLib.PDFDocument.create();
         for (const dataUrl of State.cameraShots) {
           const img = await doc.embedJpg(dataUrl);
@@ -1340,9 +1573,7 @@
         }
         FileUtils.download(await doc.save(), "scanned_doc.pdf");
         State.cameraShots = [];
-        document.getElementById('liveCamBox').classList.add('hidden');
-        if (State.cameraStream) { State.cameraStream.getTracks().forEach(t => t.stop()); State.cameraStream = null; }
-        Toast.show("Scanned PDF downloaded!");
+        this.closeCamera();
       },
 
       async sarkariResizeDirect(targetKB, maxW, maxH, filename) {
@@ -1377,7 +1608,7 @@
             status.classList.remove('hidden');
             status.innerHTML = `
               <div class="font-bold mb-1 text-emerald-400">Target Met: ${sizeKB.toFixed(1)} KB (&lt;${targetKB}KB)</div>
-              <a href="${dataUrl}" download="${filename}" class="btn-brand-primary px-3 py-1.5 text-xs inline-block font-bold">Download File</a>
+              <button onclick="FileUtils.download('${dataUrl}', '${filename}', 'image/jpeg')" class="btn-brand-primary px-4 py-2 text-xs font-bold shadow-lg">Save &amp; Share File</button>
             `;
           }
           Toast.show(`Satisfied: ${sizeKB.toFixed(1)} KB`);
@@ -1404,7 +1635,6 @@
         }
         const bytes = await doc.save({ useObjectStreams: true });
         FileUtils.download(bytes, "NTA_NEET_Verified_Dossier.pdf");
-        Toast.show("NTA PDF compiled!");
       },
 
       async applyKycStamp() {
@@ -1438,11 +1668,7 @@
           ctx.fillText(`DATE: ${new Date().toLocaleDateString('en-IN')}`, 0, canvas.width * 0.035);
           ctx.restore();
 
-          const a = document.createElement('a');
-          a.download = "KYC_Self_Attested_Masked.png";
-          a.href = canvas.toDataURL('image/png');
-          a.click();
-          Toast.show("Stamped & Masked KYC Downloaded!");
+          FileUtils.download(canvas.toDataURL('image/png'), "KYC_Self_Attested_Masked.png", "image/png");
         };
       },
 
@@ -1450,7 +1676,6 @@
         try {
           const { doc } = await this.getDoc();
           FileUtils.download(await doc.save(), "processed_document.pdf");
-          Toast.show("Document processed!");
         } catch (e) { Toast.show(e.message); }
       }
     };
