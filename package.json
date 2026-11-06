@@ -1,16 +1,21 @@
 {
-  "name": "ecc",
+  "name": "desipdf",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "tauri": "tauri"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.4",
+    "@tauri-apps/api": "^2.12.4",
+    "@tauri-apps/plugin-dialog": "^2.8.4",
+    "@tauri-apps/plugin-fs": "^2.7.1",
+    "@tauri-apps/plugin-shell": "^2.6.0",
     "jszip": "^3.10.2",
     "lucide-react": "^1.69.0",
     "pdf-lib": "^1.17.1",
@@ -19,6 +24,7 @@
     "tailwindcss": "^4.3.4"
   },
   "devDependencies": {
+    "@tauri-apps/cli": "^2.12.4",
     "@types/jszip": "^3.4.0",
     "@types/node": "^24.19.2",
     "@types/react": "^19.3.0",

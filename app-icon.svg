@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D71920" />
+      <stop offset="100%" stop-color="#8B0E14" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <!-- Rounded App Background -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+
+  <!-- Document Card Plate -->
+  <g filter="url(#shadow)">
+    <rect x="100" y="80" width="312" height="352" rx="36" fill="#FFFFFF" />
+    <path d="M340 80 L412 152 L340 152 Z" fill="#F3F4F6" />
+    <path d="M340 80 L412 152" stroke="#E5E7EB" stroke-width="3" />
+  </g>
+
+  <!-- Emblem / Character 'भ' in Red -->
+  <text x="256" y="310" 
+        font-family="system-ui, -apple-system, sans-serif" 
+        font-size="160" 
+        font-weight="900" 
+        fill="#D71920" 
+        text-anchor="middle">भ</text>
+
+  <!-- Subtle PDF Badge pill at bottom of card -->
+  <rect x="180" y="340" width="152" height="42" rx="12" fill="#D71920" />
+  <text x="256" y="369" 
+        font-family="monospace" 
+        font-size="22" 
+        font-weight="bold" 
+        fill="#FFFFFF" 
+        letter-spacing="2"
+        text-anchor="middle">DESI PDF</text>
+</svg>
