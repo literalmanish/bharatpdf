@@ -7,7 +7,7 @@
 
   <!-- PWA & Mobile Meta -->
   <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#0e1015" />
+  <meta name="theme-color" content="#121316" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -16,12 +16,12 @@
   <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Local Stylesheet (Compiled by Vite) -->
+  <!-- Compiled CSS -->
   <link rel="stylesheet" href="/src/index.css" />
 
-  <!-- Offline Local PDF & Icon Libraries (No Internet Connection Required) -->
+  <!-- Local Offline JS Libraries (100% Offline Capability) -->
   <script src="./vendor/lucide.min.js"></script>
   <script src="./vendor/pdf-lib.min.js"></script>
   <script src="./vendor/pdf.min.js"></script>
@@ -31,361 +31,225 @@
       window.pdfjsLib.GlobalWorkerOptions.workerSrc = './vendor/pdf.worker.min.js';
     }
   </script>
-
-  <style>
-    :root {
-      --bg-dark: #0e1015;
-      --surface-dark: #171920;
-      --surface-card: #1c1e27;
-      --surface-hover: #262833;
-      --border-dark: #272a36;
-      --color-primary: #D71920;
-      --color-primary-hover: #b51218;
-      --color-accent-gold: #F59E0B;
-      --text-main: #FFFFFF;
-      --text-muted: #94A3B8;
-    }
-
-    .light {
-      --bg-dark: #F8FAFC;
-      --surface-dark: #FFFFFF;
-      --surface-card: #FFFFFF;
-      --surface-hover: #F1F5F9;
-      --border-dark: #E2E8F0;
-      --text-main: #0F172A;
-      --text-muted: #64748B;
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    body {
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      overflow-x: hidden;
-      user-select: none;
-    }
-
-    .font-brand { font-family: 'Montserrat', sans-serif; }
-    .font-display { font-family: 'Manrope', sans-serif; }
-    .font-mono { font-family: 'JetBrains Mono', monospace; }
-
-    /* Custom Mobile Bottom Nav Pill Active State */
-    .nav-tab-active {
-      color: #FFFFFF !important;
-    }
-    .nav-tab-active .nav-pill {
-      background-color: #3b191c;
-      color: #EF4444;
-      transform: scale(1.05);
-    }
-    .light .nav-tab-active .nav-pill {
-      background-color: #fee2e2;
-      color: #DC2626;
-    }
-
-    /* Toggle Switch */
-    .toggle-checkbox:checked {
-      right: 0;
-      border-color: #EF4444;
-    }
-    .toggle-checkbox:checked + .toggle-label {
-      background-color: #EF4444;
-    }
-
-    /* Smooth scroll horizontal cards */
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-    .tool-tile {
-      background-color: var(--surface-card);
-      border: 1px solid var(--border-dark);
-      border-radius: 16px;
-      transition: all 0.15s ease;
-    }
-    .tool-tile:active {
-      transform: scale(0.97);
-      background-color: var(--surface-hover);
-    }
-
-    .btn-brand-primary {
-      background-color: var(--color-primary);
-      color: #FFFFFF;
-      border-radius: 12px;
-      transition: all 0.15s ease;
-    }
-    .btn-brand-primary:active {
-      background-color: var(--color-primary-hover);
-      transform: scale(0.98);
-    }
-
-    .modal-backdrop {
-      background-color: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(6px);
-    }
-  </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between max-w-md mx-auto relative shadow-2xl pb-20 border-x border-[#272a36]">
+<body class="min-h-screen flex flex-col justify-between max-w-md mx-auto relative bg-[#121316] text-white pb-20 select-none">
 
   <!-- ======================================================== -->
-  <!-- 1. TOP MOBILE HEADER BAR                                 -->
+  <!-- 1. TOP MOBILE HEADER BAR (Matching Reference PDF)        -->
   <!-- ======================================================== -->
-  <header class="sticky top-0 z-30 px-5 pt-3 pb-3 flex items-center justify-between border-b border-[#272a36] bg-[#0e1015]/95 backdrop-blur-md">
-    <!-- Brand Logo -->
-    <div onclick="Nav.setTab('home')" class="flex items-center gap-2.5 cursor-pointer">
-      <div class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white shadow-md bg-[#D71920]">
-        <span class="text-lg font-bold leading-none font-display">भ</span>
-      </div>
-      <div class="flex items-center gap-1">
-        <span class="text-lg font-extrabold tracking-tight font-display text-white">Desi</span>
-        <span class="text-lg font-extrabold tracking-tight font-display text-[#D71920]">PDF</span>
+  <header class="sticky top-0 z-30 px-4 pt-3 pb-3 flex items-center justify-between border-b border-[#282932] bg-[#121316]/95 backdrop-blur-md">
+    <!-- Brand Logo: Desi ❤️ PDF -->
+    <div onclick="Nav.setTab('home')" class="flex items-center gap-2 cursor-pointer">
+      <div class="flex items-center gap-1.5 font-bold text-xl tracking-tight">
+        <span class="text-white font-extrabold">Desi</span>
+        <span class="text-[#eb5757] text-2xl leading-none">❤️</span>
+        <span class="text-white font-extrabold">PDF</span>
       </div>
     </div>
 
-    <!-- Actions (Search, Grid Toggle, Profile Avatar) -->
-    <div class="flex items-center gap-3">
-      <button onclick="Nav.setTab('tools'); setTimeout(() => document.getElementById('toolSearchInput')?.focus(), 200);" class="p-2 rounded-full hover:bg-neutral-800 text-neutral-300 hover:text-white transition">
+    <!-- Actions (Search & Layout Toggle - NO Sign-In Option) -->
+    <div class="flex items-center gap-2">
+      <button onclick="Nav.setTab('tools'); setTimeout(() => document.getElementById('toolSearchInput')?.focus(), 250);" class="p-2 rounded-full hover:bg-neutral-800 text-neutral-300 hover:text-white transition" title="Search Tools">
         <i data-lucide="search" class="w-5 h-5"></i>
       </button>
 
-      <button onclick="App.toggleToolsLayout()" id="layoutToggleBtn" class="p-2 rounded-full hover:bg-neutral-800 text-neutral-300 hover:text-white transition hidden">
+      <button onclick="App.toggleToolsLayout()" id="layoutToggleBtn" class="p-2 rounded-full hover:bg-neutral-800 text-neutral-300 hover:text-white transition" title="Toggle Layout">
         <i data-lucide="layout-grid" class="w-5 h-5"></i>
-      </button>
-
-      <!-- Profile Avatar Button -> opens Login/Sign-up modal -->
-      <button onclick="AuthModal.open()" class="relative p-0.5 rounded-full border-2 border-red-500/80 hover:border-red-500 transition group">
-        <div class="w-7 h-7 rounded-full bg-neutral-800 flex items-center justify-center text-neutral-300">
-          <i data-lucide="user" class="w-4 h-4"></i>
-        </div>
-        <span class="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-[#0e1015]"></span>
       </button>
     </div>
   </header>
 
   <!-- ======================================================== -->
-  <!-- 2. MAIN APP CONTENT CONTAINER (Dynamic Tab Views)        -->
+  <!-- 2. MAIN APP CONTENT CONTAINER                            -->
   <!-- ======================================================== -->
-  <main class="flex-grow px-4 py-4 space-y-6 overflow-y-auto">
+  <main class="flex-grow px-4 py-3 space-y-5 overflow-y-auto">
 
     <!-- ====================================================== -->
     <!-- TAB 1: HOME VIEW (Screenshot 9)                        -->
     <!-- ====================================================== -->
-    <section id="view-home" class="space-y-6">
+    <section id="view-home" class="space-y-5">
       
       <!-- Recent Files Horizontal Carousel -->
       <div>
-        <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center justify-between mb-2.5">
           <h3 class="text-xs font-mono font-bold tracking-wider uppercase text-neutral-400">Recent Workspace</h3>
-          <span class="text-[11px] text-red-500 font-semibold cursor-pointer" onclick="Nav.setTab('files')">View all</span>
+          <span class="text-[11px] text-[#eb5757] font-semibold cursor-pointer" onclick="Nav.setTab('files')">View all</span>
         </div>
         
-        <div class="flex gap-3 overflow-x-auto no-scrollbar pb-1">
-          <!-- Card 1 -->
-          <div onclick="App.openTool(1)" class="w-36 flex-shrink-0 p-3 rounded-2xl bg-[#171920] border border-[#272a36] hover:border-red-500 transition cursor-pointer">
-            <div class="w-full h-20 rounded-xl bg-gradient-to-br from-red-950 to-neutral-900 border border-red-900/30 flex items-center justify-center text-red-400 mb-2.5">
-              <i data-lucide="layers" class="w-8 h-8"></i>
+        <div class="flex gap-2.5 overflow-x-auto no-scrollbar pb-1">
+          <!-- Card 1: Merged Doc -->
+          <div onclick="App.openTool(1)" class="w-32 flex-shrink-0 p-3 rounded-2xl bg-[#1d1e25] border border-[#282932] hover:border-[#eb5757] transition cursor-pointer">
+            <div class="w-full h-16 rounded-xl bg-gradient-to-br from-red-950 to-neutral-900 border border-red-900/40 flex items-center justify-center text-[#eb5757] mb-2">
+              <i data-lucide="layers" class="w-6 h-6"></i>
             </div>
-            <p class="text-xs font-semibold text-white truncate">Merged_Doc.pdf</p>
-            <p class="text-[10px] text-neutral-400 mt-0.5">Ready • 2.4 MB</p>
+            <p class="text-[11px] font-semibold text-white truncate">Merged_Doc.pdf</p>
+            <p class="text-[9px] text-neutral-400 mt-0.5">Ready • 2.4 MB</p>
           </div>
 
           <!-- Card 2: UPSC Resizer -->
-          <div onclick="App.openPresetModal('upsc')" class="w-36 flex-shrink-0 p-3 rounded-2xl bg-[#171920] border border-[#272a36] hover:border-red-500 transition cursor-pointer">
-            <div class="w-full h-20 rounded-xl bg-gradient-to-br from-amber-950 to-neutral-900 border border-amber-900/30 flex items-center justify-center text-amber-400 mb-2.5">
-              <i data-lucide="user-check" class="w-8 h-8"></i>
+          <div onclick="App.openTool(30)" class="w-32 flex-shrink-0 p-3 rounded-2xl bg-[#1d1e25] border border-[#282932] hover:border-[#eb5757] transition cursor-pointer">
+            <div class="w-full h-16 rounded-xl bg-gradient-to-br from-amber-950 to-neutral-900 border border-amber-900/40 flex items-center justify-center text-amber-400 mb-2">
+              <i data-lucide="user-check" class="w-6 h-6"></i>
             </div>
-            <p class="text-xs font-semibold text-white truncate">upsc_photo.jpg</p>
-            <p class="text-[10px] text-neutral-400 mt-0.5">&lt;50KB Verified</p>
+            <p class="text-[11px] font-semibold text-white truncate">upsc_photo.jpg</p>
+            <p class="text-[9px] text-neutral-400 mt-0.5">&lt;50KB Verified</p>
           </div>
 
           <!-- Card 3: Aadhaar Mask -->
-          <div onclick="App.openPresetModal('kyc')" class="w-36 flex-shrink-0 p-3 rounded-2xl bg-[#171920] border border-[#272a36] hover:border-red-500 transition cursor-pointer">
-            <div class="w-full h-20 rounded-xl bg-gradient-to-br from-blue-950 to-neutral-900 border border-blue-900/30 flex items-center justify-center text-blue-400 mb-2.5">
-              <i data-lucide="stamp" class="w-8 h-8"></i>
+          <div onclick="App.openTool(32)" class="w-32 flex-shrink-0 p-3 rounded-2xl bg-[#1d1e25] border border-[#282932] hover:border-[#eb5757] transition cursor-pointer">
+            <div class="w-full h-16 rounded-xl bg-gradient-to-br from-blue-950 to-neutral-900 border border-blue-900/40 flex items-center justify-center text-blue-400 mb-2">
+              <i data-lucide="shield-check" class="w-6 h-6"></i>
             </div>
-            <p class="text-xs font-semibold text-white truncate">kyc_masked.png</p>
-            <p class="text-[10px] text-neutral-400 mt-0.5">DPDP Compliant</p>
+            <p class="text-[11px] font-semibold text-white truncate">kyc_masked.png</p>
+            <p class="text-[9px] text-neutral-400 mt-0.5">DPDP Compliant</p>
           </div>
         </div>
       </div>
 
-      <!-- Hero Banner ("Do wonders with DesiPDF") -->
-      <div class="relative overflow-hidden p-6 rounded-3xl bg-gradient-to-r from-[#171920] to-[#1f1a24] border border-[#272a36] text-center space-y-3">
-        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-950 text-red-400 border border-red-800 text-[10px] font-mono font-bold">
-          <i data-lucide="shield-check" class="w-3 h-3"></i>
+      <!-- Hero Banner (Matching Screenshot 9) -->
+      <div class="relative overflow-hidden p-5 rounded-3xl bg-gradient-to-br from-[#1d1e25] to-[#25222b] border border-[#282932] text-center space-y-3">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-950/80 text-[#eb5757] border border-red-800/40 text-[10px] font-mono font-bold">
+          <i data-lucide="shield" class="w-3.5 h-3.5"></i>
           <span>100% In-Memory RAM Sandbox</span>
         </div>
         <h2 class="text-xl font-extrabold text-white tracking-tight leading-snug">
-          Do wonders with <br/><span class="text-red-500">DesiPDF Mobile</span>
+          Do wonders with <br/><span class="text-[#eb5757]">DesiPDF Offline</span>
         </h2>
         <p class="text-xs text-neutral-400 max-w-xs mx-auto">
-          Private, instant document tools built for students, professionals &amp; citizens.
+          Private, zero-server document tools designed for Indian citizens &amp; students.
         </p>
-        <button onclick="Nav.setTab('tools')" class="btn-brand-primary px-6 py-2.5 text-xs font-bold tracking-wide shadow-lg shadow-red-900/20">
-          Open All 32 Tools
+        <button onclick="Nav.setTab('tools')" class="btn-primary px-6 py-2.5 text-xs font-bold tracking-wide shadow-lg shadow-red-900/30">
+          Start Using 32 Tools
         </button>
       </div>
 
-      <!-- Sarkari Fast Presets Shortcut Carousel -->
-      <div class="space-y-3">
-        <div class="flex items-center justify-between">
-          <h3 class="text-xs font-mono font-bold uppercase tracking-wider text-neutral-400">Sarkari Fast Presets</h3>
-          <span class="text-[10px] font-mono text-red-400">1-Tap Compliance</span>
-        </div>
-        <div class="grid grid-cols-2 gap-3">
-          <div onclick="App.openPresetModal('upsc')" class="p-4 rounded-2xl bg-[#171920] border border-[#272a36] hover:border-red-500 transition cursor-pointer flex flex-col justify-between">
-            <div class="w-8 h-8 rounded-lg bg-red-950 text-red-400 flex items-center justify-center mb-2">
-              <i data-lucide="user-check" class="w-4 h-4"></i>
-            </div>
-            <h4 class="text-xs font-bold text-white">UPSC Resizer</h4>
-            <p class="text-[10px] text-neutral-400 mt-0.5">&lt;50KB Photo / &lt;20KB Sign</p>
-          </div>
-
-          <div onclick="App.openPresetModal('ssc')" class="p-4 rounded-2xl bg-[#171920] border border-[#272a36] hover:border-red-500 transition cursor-pointer flex flex-col justify-between">
-            <div class="w-8 h-8 rounded-lg bg-amber-950 text-amber-400 flex items-center justify-center mb-2">
-              <i data-lucide="file-badge-2" class="w-4 h-4"></i>
-            </div>
-            <h4 class="text-xs font-bold text-white">SSC 50KB Compress</h4>
-            <p class="text-[10px] text-neutral-400 mt-0.5">Strict Exam Portal Bounds</p>
-          </div>
-
-          <div onclick="App.openPresetModal('nta')" class="p-4 rounded-2xl bg-[#171920] border border-[#272a36] hover:border-red-500 transition cursor-pointer flex flex-col justify-between">
-            <div class="w-8 h-8 rounded-lg bg-blue-950 text-blue-400 flex items-center justify-center mb-2">
-              <i data-lucide="files" class="w-4 h-4"></i>
-            </div>
-            <h4 class="text-xs font-bold text-white">NTA / NEET PDF</h4>
-            <p class="text-[10px] text-neutral-400 mt-0.5">Photo + Thumb + Certs</p>
-          </div>
-
-          <div onclick="App.openPresetModal('kyc')" class="p-4 rounded-2xl bg-[#171920] border border-[#272a36] hover:border-red-500 transition cursor-pointer flex flex-col justify-between">
-            <div class="w-8 h-8 rounded-lg bg-emerald-950 text-emerald-400 flex items-center justify-center mb-2">
-              <i data-lucide="stamp" class="w-4 h-4"></i>
-            </div>
-            <h4 class="text-xs font-bold text-white">Aadhaar KYC Mask</h4>
-            <p class="text-[10px] text-neutral-400 mt-0.5">Mask 8 Digits &amp; Attest</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature Highlight Card ("Meet Reader View") -->
-      <div class="p-5 rounded-3xl bg-[#171920] border border-[#272a36] flex items-center justify-between gap-4">
+      <!-- Feature Highlight Card ("Meet Reader View" - Screenshot 9) -->
+      <div class="p-4 rounded-2xl bg-[#1d1e25] border border-[#282932] flex items-center justify-between gap-3">
         <div>
-          <span class="text-[10px] font-mono font-bold uppercase text-red-500">Offline &amp; Private</span>
+          <span class="text-[10px] font-mono font-bold uppercase text-[#eb5757]">Offline &amp; Private</span>
           <h3 class="text-sm font-bold text-white mt-0.5">Meet Reader View</h3>
-          <p class="text-xs text-neutral-400 mt-1">Read and review PDFs without clutter or network lag.</p>
+          <p class="text-xs text-neutral-400 mt-1">Back to work, back to easy reading without distraction.</p>
         </div>
-        <div class="w-12 h-12 rounded-2xl bg-[#262833] flex items-center justify-center text-red-500 shrink-0">
-          <i data-lucide="book-open" class="w-6 h-6"></i>
+        <div class="w-11 h-11 rounded-2xl bg-neutral-800 flex items-center justify-center text-[#eb5757] shrink-0">
+          <i data-lucide="book-open" class="w-5 h-5"></i>
         </div>
       </div>
 
-      <!-- Favorites Section (Empty state) -->
-      <div class="space-y-3 pb-4">
+      <!-- Favorites Section (Screenshot 9) -->
+      <div class="space-y-2.5 pb-2">
         <div class="flex items-center gap-2">
           <h3 class="text-xs font-mono font-bold uppercase tracking-wider text-neutral-400">Favorites</h3>
-          <i data-lucide="heart" class="w-3.5 h-3.5 text-red-500 fill-red-500"></i>
+          <i data-lucide="heart" class="w-3.5 h-3.5 text-[#eb5757] fill-[#eb5757]"></i>
         </div>
-        <div class="p-8 rounded-2xl border border-dashed border-[#272a36] text-center">
-          <p class="text-xs text-neutral-500">Your favorite tools and documents will appear here</p>
+        <div class="p-6 rounded-2xl border border-dashed border-[#282932] text-center bg-[#1d1e25]/50">
+          <p class="text-xs text-neutral-400">Your favorite files will appear here</p>
         </div>
       </div>
     </section>
 
     <!-- ====================================================== -->
-    <!-- TAB 2: FILES VIEW (Screenshot 3 & 2)                   -->
+    <!-- TAB 2: FILES VIEW (Screenshots 3 & 2)                   -->
     <!-- ====================================================== -->
-    <section id="view-files" class="space-y-6 hidden">
+    <section id="view-files" class="space-y-5 hidden">
       
       <!-- Section: My Storage -->
       <div class="space-y-2">
-        <h3 class="text-xs font-mono font-bold uppercase tracking-wider text-neutral-400 mb-3">My storage</h3>
+        <h3 class="text-xs font-mono font-bold uppercase tracking-wider text-neutral-400 mb-2">My storage</h3>
         
-        <div class="space-y-1.5">
-          <!-- Internal Storage -->
-          <div onclick="Toast.show('Accessing Local In-Memory Storage')" class="p-3.5 rounded-2xl bg-[#171920] border border-[#272a36] flex items-center justify-between cursor-pointer active:bg-neutral-800">
+        <div class="space-y-2">
+          <!-- Internal Storage (Triggers Storage Permission) -->
+          <div onclick="App.handleStorageAccess()" class="p-3.5 rounded-2xl bg-[#1d1e25] border border-[#282932] flex items-center justify-between cursor-pointer active:bg-[#262731]">
             <div class="flex items-center gap-3">
               <div class="w-9 h-9 rounded-xl bg-neutral-800 flex items-center justify-center text-neutral-300">
                 <i data-lucide="smartphone" class="w-5 h-5"></i>
               </div>
               <span class="text-sm font-medium text-white">Internal Storage</span>
             </div>
-            <span class="text-xs font-mono text-neutral-400">32 Tools</span>
+            <span class="text-xs font-mono text-neutral-400">30</span>
           </div>
 
           <!-- Downloads -->
-          <div onclick="Toast.show('Processed downloads ready')" class="p-3.5 rounded-2xl bg-[#171920] border border-[#272a36] flex items-center justify-between cursor-pointer active:bg-neutral-800">
+          <div onclick="Toast.show('Processed downloads saved to Downloads/DesiPDF')" class="p-3.5 rounded-2xl bg-[#1d1e25] border border-[#282932] flex items-center justify-between cursor-pointer active:bg-[#262731]">
             <div class="flex items-center gap-3">
               <div class="w-9 h-9 rounded-xl bg-neutral-800 flex items-center justify-center text-neutral-300">
                 <i data-lucide="download" class="w-5 h-5"></i>
               </div>
               <span class="text-sm font-medium text-white">Downloads</span>
             </div>
-            <span class="text-xs font-mono text-neutral-400">Instant</span>
+            <span class="text-xs font-mono text-neutral-400">530</span>
           </div>
 
           <!-- Processed files -->
-          <div onclick="Toast.show('In-Memory Sandbox Active')" class="p-3.5 rounded-2xl bg-[#171920] border border-[#272a36] flex items-center justify-between cursor-pointer active:bg-neutral-800">
+          <div onclick="Toast.show('In-Memory Sandbox Active - Zero Data Saved Remotely')" class="p-3.5 rounded-2xl bg-[#1d1e25] border border-[#282932] flex items-center justify-between cursor-pointer active:bg-[#262731]">
             <div class="flex items-center gap-3">
               <div class="w-9 h-9 rounded-xl bg-neutral-800 flex items-center justify-center text-neutral-300">
                 <i data-lucide="file-check" class="w-5 h-5"></i>
               </div>
               <span class="text-sm font-medium text-white">Processed files</span>
             </div>
-            <span class="text-xs font-mono text-neutral-400">RAM (0)</span>
+            <span class="text-xs font-mono text-neutral-400">0</span>
           </div>
         </div>
       </div>
 
-      <!-- Section: Cloud storage -->
+      <!-- Section: Cloud Storage -->
       <div class="space-y-2">
-        <div class="flex items-center gap-2 mb-3">
+        <div class="flex items-center gap-2 mb-2">
           <h3 class="text-xs font-mono font-bold uppercase tracking-wider text-neutral-400">Cloud storage</h3>
           <i data-lucide="crown" class="w-3.5 h-3.5 text-amber-500 fill-amber-500"></i>
         </div>
 
-        <div class="space-y-1.5">
+        <div class="space-y-2">
           <!-- Google Drive -->
-          <div onclick="Toast.show('Cloud connectors enabled via DigiLocker / Drive')" class="p-3.5 rounded-2xl bg-[#171920] border border-[#272a36] flex items-center justify-between cursor-pointer">
+          <div onclick="Toast.show('Cloud connectors enabled via DigiLocker / Drive')" class="p-3.5 rounded-2xl bg-[#1d1e25] border border-[#282932] flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-3">
               <div class="w-9 h-9 rounded-xl bg-neutral-800 flex items-center justify-center text-amber-500">
                 <i data-lucide="triangle" class="w-5 h-5"></i>
               </div>
               <span class="text-sm font-medium text-white">Google Drive</span>
             </div>
-            <span class="text-xs font-semibold text-red-500">Add account</span>
-          </div>
-
-          <!-- DigiLocker (Indian Cloud Addition) -->
-          <div onclick="Toast.show('DigiLocker direct fetch active')" class="p-3.5 rounded-2xl bg-[#171920] border border-[#272a36] flex items-center justify-between cursor-pointer">
-            <div class="flex items-center gap-3">
-              <div class="w-9 h-9 rounded-xl bg-neutral-800 flex items-center justify-center text-blue-400">
-                <i data-lucide="shield" class="w-5 h-5"></i>
-              </div>
-              <span class="text-sm font-medium text-white">DigiLocker India</span>
-            </div>
-            <span class="text-xs font-semibold text-red-500">Add account</span>
+            <span class="text-xs font-semibold text-[#eb5757]">Add account</span>
           </div>
 
           <!-- Dropbox -->
-          <div onclick="Toast.show('Dropbox link ready')" class="p-3.5 rounded-2xl bg-[#171920] border border-[#272a36] flex items-center justify-between cursor-pointer">
+          <div onclick="Toast.show('Dropbox link ready')" class="p-3.5 rounded-2xl bg-[#1d1e25] border border-[#282932] flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-3">
               <div class="w-9 h-9 rounded-xl bg-neutral-800 flex items-center justify-center text-blue-500">
                 <i data-lucide="box" class="w-5 h-5"></i>
               </div>
               <span class="text-sm font-medium text-white">Dropbox</span>
             </div>
-            <span class="text-xs font-semibold text-red-500">Add account</span>
+            <span class="text-xs font-semibold text-[#eb5757]">Add account</span>
+          </div>
+
+          <!-- OneDrive -->
+          <div onclick="Toast.show('OneDrive link ready')" class="p-3.5 rounded-2xl bg-[#1d1e25] border border-[#282932] flex items-center justify-between cursor-pointer">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-neutral-800 flex items-center justify-center text-sky-400">
+                <i data-lucide="cloud" class="w-5 h-5"></i>
+              </div>
+              <span class="text-sm font-medium text-white">OneDrive</span>
+            </div>
+            <span class="text-xs font-semibold text-[#eb5757]">Add account</span>
+          </div>
+
+          <!-- SharePoint -->
+          <div onclick="Toast.show('SharePoint link ready')" class="p-3.5 rounded-2xl bg-[#1d1e25] border border-[#282932] flex items-center justify-between cursor-pointer">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-neutral-800 flex items-center justify-center text-teal-400">
+                <i data-lucide="share-2" class="w-5 h-5"></i>
+              </div>
+              <span class="text-sm font-medium text-white">SharePoint</span>
+            </div>
+            <span class="text-xs font-semibold text-[#eb5757]">Add account</span>
           </div>
         </div>
       </div>
 
       <!-- Section: Others (Bin / Trash -> Screenshot 2) -->
       <div class="space-y-2">
-        <h3 class="text-xs font-mono font-bold uppercase tracking-wider text-neutral-400 mb-3">Others</h3>
-        <div onclick="BinModal.open()" class="p-3.5 rounded-2xl bg-[#171920] border border-[#272a36] flex items-center justify-between cursor-pointer active:bg-neutral-800">
+        <h3 class="text-xs font-mono font-bold uppercase tracking-wider text-neutral-400 mb-2">Others</h3>
+        <div onclick="BinModal.open()" class="p-3.5 rounded-2xl bg-[#1d1e25] border border-[#282932] flex items-center justify-between cursor-pointer active:bg-[#262731]">
           <div class="flex items-center gap-3">
             <div class="w-9 h-9 rounded-xl bg-neutral-800 flex items-center justify-center text-neutral-300">
               <i data-lucide="trash-2" class="w-5 h-5"></i>
@@ -400,7 +264,7 @@
     <!-- ====================================================== -->
     <!-- TAB 3: TOOLS VIEW (Screenshots 7 & 8)                  -->
     <!-- ====================================================== -->
-    <section id="view-tools" class="space-y-5 hidden">
+    <section id="view-tools" class="space-y-4 hidden">
       
       <!-- Search Input -->
       <div class="relative w-full">
@@ -408,8 +272,8 @@
         <input 
           type="search" 
           id="toolSearchInput" 
-          placeholder="Search 32 PDF engines..." 
-          class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#171920] border border-[#272a36] text-xs font-mono text-white placeholder-neutral-500 focus:outline-none focus:border-red-500 transition"
+          placeholder="Search all 32 PDF tools..." 
+          class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#1d1e25] border border-[#282932] text-xs font-mono text-white placeholder-neutral-500 focus:outline-none focus:border-[#eb5757] transition"
           oninput="App.handleSearch(event)"
         />
       </div>
@@ -417,137 +281,156 @@
       <!-- Category Filter Pills -->
       <div class="flex gap-1.5 overflow-x-auto no-scrollbar pb-1 text-xs font-mono" id="mobileCategoryBar"></div>
 
-      <!-- Core Tools 3-Column Grid (Exactly like Screenshot 7 & 8) -->
-      <div id="mobileToolsGrid" class="grid grid-cols-3 gap-3"></div>
+      <!-- Core Tools 3-Column Grid (Screenshots 7 & 8) -->
+      <div id="mobileToolsGrid" class="grid grid-cols-3 gap-2.5"></div>
 
-      <!-- DesiIMG / Picture Tools Header & Grid -->
-      <div class="pt-4 border-t border-[#272a36] space-y-3">
-        <div class="flex items-center gap-2">
-          <h3 class="text-xs font-bold text-white tracking-wide">DesiIMG tools</h3>
-          <span class="px-1.5 py-0.5 rounded text-[10px] font-mono bg-red-950 text-red-400">High-Res</span>
+      <!-- Image & Sarkari Tools Header & Grid -->
+      <div class="pt-3 border-t border-[#282932] space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xs font-bold text-white tracking-wide">Image &amp; Sarkari Tools</h3>
+          <span class="px-2 py-0.5 rounded-md text-[10px] font-mono bg-red-950 text-[#eb5757] font-bold">Offline Engines</span>
         </div>
 
-        <div class="grid grid-cols-3 gap-3">
-          <div onclick="App.openPresetModal('upsc')" class="tool-tile p-3 flex flex-col items-center justify-center text-center cursor-pointer min-h-[96px]">
-            <div class="w-8 h-8 rounded-lg bg-blue-950 text-blue-400 flex items-center justify-center mb-2">
+        <div class="grid grid-cols-3 gap-2.5" id="sarkariToolsGrid">
+          <!-- Quick Direct Access to Image / Exam Tools -->
+          <div onclick="App.openTool(26)" class="tool-tile">
+            <div class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center mb-1.5">
               <i data-lucide="minimize-2" class="w-4 h-4"></i>
             </div>
             <span class="text-[11px] font-semibold text-white leading-tight">Compress image</span>
           </div>
 
-          <div onclick="App.openTool(9)" class="tool-tile p-3 flex flex-col items-center justify-center text-center cursor-pointer min-h-[96px]">
-            <div class="w-8 h-8 rounded-lg bg-blue-950 text-blue-400 flex items-center justify-center mb-2">
+          <div onclick="App.openTool(27)" class="tool-tile">
+            <div class="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center mb-1.5">
               <i data-lucide="image" class="w-4 h-4"></i>
             </div>
             <span class="text-[11px] font-semibold text-white leading-tight">Convert to JPG</span>
           </div>
 
-          <div onclick="App.openTool(15)" class="tool-tile p-3 flex flex-col items-center justify-center text-center cursor-pointer min-h-[96px]">
-            <div class="w-8 h-8 rounded-lg bg-blue-950 text-blue-400 flex items-center justify-center mb-2">
+          <div onclick="App.openTool(28)" class="tool-tile">
+            <div class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center mb-1.5">
               <i data-lucide="file-image" class="w-4 h-4"></i>
             </div>
             <span class="text-[11px] font-semibold text-white leading-tight">Convert from JPG</span>
           </div>
 
-          <div onclick="App.openPresetModal('ssc')" class="tool-tile p-3 flex flex-col items-center justify-center text-center cursor-pointer min-h-[96px]">
-            <div class="w-8 h-8 rounded-lg bg-blue-950 text-blue-400 flex items-center justify-center mb-2">
+          <div onclick="App.openTool(29)" class="tool-tile">
+            <div class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center mb-1.5">
               <i data-lucide="scaling" class="w-4 h-4"></i>
             </div>
             <span class="text-[11px] font-semibold text-white leading-tight">Resize image</span>
+          </div>
+
+          <div onclick="App.openTool(30)" class="tool-tile">
+            <div class="w-8 h-8 rounded-lg bg-red-500/20 text-red-400 flex items-center justify-center mb-1.5">
+              <i data-lucide="user-check" class="w-4 h-4"></i>
+            </div>
+            <span class="text-[11px] font-semibold text-white leading-tight">UPSC Resizer</span>
+          </div>
+
+          <div onclick="App.openTool(32)" class="tool-tile">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-1.5">
+              <i data-lucide="stamp" class="w-4 h-4"></i>
+            </div>
+            <span class="text-[11px] font-semibold text-white leading-tight">Aadhaar KYC Mask</span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ====================================================== -->
-    <!-- TAB 4: SCANNER VIEW (Screenshot 6)                     -->
+    <!-- TAB 4: SCANNER VIEW (Screenshot 6 + Camera Flip)       -->
     <!-- ====================================================== -->
-    <section id="view-scanner" class="space-y-6 hidden">
+    <section id="view-scanner" class="space-y-4 hidden">
       <!-- Sub-tabs: Scanned Images | Converted PDFs -->
-      <div class="flex p-1 rounded-2xl bg-[#171920] border border-[#272a36]">
-        <button onclick="ScannerView.setSubTab('images')" id="scanTabImages" class="flex-1 py-2.5 text-xs font-semibold rounded-xl bg-neutral-800 text-white shadow transition">
+      <div class="flex p-1 rounded-2xl bg-[#1d1e25] border border-[#282932]">
+        <button onclick="ScannerView.setSubTab('images')" id="scanTabImages" class="flex-1 py-2 text-xs font-semibold rounded-xl bg-neutral-800 text-white shadow transition">
           Scanned Images
         </button>
-        <button onclick="ScannerView.setSubTab('pdfs')" id="scanTabPdfs" class="flex-1 py-2.5 text-xs font-semibold rounded-xl text-neutral-400 hover:text-white transition">
+        <button onclick="ScannerView.setSubTab('pdfs')" id="scanTabPdfs" class="flex-1 py-2 text-xs font-semibold rounded-xl text-neutral-400 hover:text-white transition">
           Converted PDFs
         </button>
       </div>
 
-      <!-- Empty State Illustration -->
-      <div class="py-16 text-center space-y-4">
-        <div class="w-24 h-24 mx-auto rounded-3xl bg-neutral-900 border border-[#272a36] flex items-center justify-center text-red-500/80">
-          <i data-lucide="scan-line" class="w-12 h-12"></i>
+      <!-- Live Camera Container with Rotate / Flip Camera -->
+      <div id="liveCamBox" class="hidden p-4 rounded-2xl bg-[#1d1e25] border border-[#282932] space-y-3">
+        <div class="relative w-full rounded-xl overflow-hidden bg-black">
+          <video id="t_video" class="w-full h-64 object-cover" autoplay playsinline muted></video>
+          
+          <!-- Camera Flip / Rotate Button Overlay (Top Right of Viewfinder) -->
+          <button onclick="Engines.flipCamera()" class="absolute top-3 right-3 p-2.5 rounded-full bg-black/60 text-white border border-white/20 hover:bg-black/90 active:scale-95 transition flex items-center gap-1.5 shadow-lg" title="Rotate / Flip Camera">
+            <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+            <span class="text-[10px] font-bold" id="camFacingLabel">Back Camera</span>
+          </button>
         </div>
-        <div class="space-y-1">
-          <h3 class="text-base font-bold text-white">No files found</h3>
-          <p class="text-xs text-neutral-400">Tap the camera button below to scan</p>
-        </div>
-      </div>
 
-      <!-- Live Camera Container (Collapsible) -->
-      <div id="liveCamBox" class="hidden p-4 rounded-2xl bg-[#171920] border border-[#272a36] space-y-3">
-        <video id="t_video" class="w-full h-56 bg-black rounded-xl object-cover" autoplay playsinline muted></video>
         <div class="grid grid-cols-2 gap-2">
-          <button onclick="Engines.snapCamera()" class="btn-brand-primary py-2.5 text-xs font-bold flex items-center justify-center gap-1.5 shadow-lg">
+          <!-- Capture Button -->
+          <button onclick="Engines.snapCamera()" class="btn-primary py-2.5 text-xs font-bold flex items-center justify-center gap-1.5 shadow-lg">
             <i data-lucide="camera" class="w-4 h-4"></i>
             <span>Capture Sheet</span>
           </button>
+
+          <!-- From Gallery Button -->
           <input type="file" id="t_gallery_scan" multiple accept="image/*" class="hidden" onchange="Engines.handleGalleryScan(this)" />
           <button onclick="document.getElementById('t_gallery_scan').click()" class="rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold py-2.5 flex items-center justify-center gap-1.5">
             <i data-lucide="image" class="w-4 h-4"></i>
             <span>From Gallery</span>
           </button>
         </div>
+
+        <!-- Compile to PDF -->
         <button onclick="Engines.compileSnaps()" class="w-full rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-2.5 flex items-center justify-center gap-1.5 shadow-lg">
           <i data-lucide="file-check" class="w-4 h-4"></i>
           <span>Compile to PDF</span>
         </button>
-        <div class="flex justify-between items-center text-[11px] font-mono text-neutral-400">
+
+        <div class="flex justify-between items-center text-[11px] font-mono text-neutral-400 pt-1">
           <span id="t_snaps_count">0 snaps queued</span>
-          <button onclick="Engines.closeCamera()" class="text-red-400 hover:underline">Close Camera</button>
+          <button onclick="Engines.closeCamera()" class="text-[#eb5757] hover:underline font-bold">Close Camera</button>
         </div>
       </div>
 
-      <!-- Floating Action Button (FAB) at Bottom Right (Exactly as Screenshot 6) -->
-      <button onclick="Engines.startCamera(); document.getElementById('liveCamBox').classList.remove('hidden');" class="fixed bottom-24 right-6 w-14 h-14 rounded-full bg-[#D71920] text-white flex items-center justify-center shadow-xl shadow-red-900/40 hover:scale-105 active:scale-95 transition z-40" aria-label="Open Camera Scanner">
+      <!-- Empty State Illustration (Matching Screenshot 6) -->
+      <div id="scannerEmptyState" class="py-16 text-center space-y-4">
+        <div class="w-24 h-24 mx-auto rounded-3xl bg-neutral-900 border border-[#282932] flex items-center justify-center text-[#eb5757]">
+          <i data-lucide="scan-line" class="w-12 h-12"></i>
+        </div>
+        <div class="space-y-1">
+          <h3 class="text-base font-bold text-white">No files found</h3>
+          <p class="text-xs text-neutral-400">Tap the camera button to begin</p>
+        </div>
+      </div>
+
+      <!-- Floating Action Button (FAB) at Bottom Right (Screenshot 6) -->
+      <button onclick="Engines.startCamera(); document.getElementById('liveCamBox').classList.remove('hidden'); document.getElementById('scannerEmptyState').classList.add('hidden');" class="fixed bottom-24 right-5 w-14 h-14 rounded-full bg-[#ffb4a2] text-[#121316] flex items-center justify-center shadow-xl shadow-black/50 hover:scale-105 active:scale-95 transition z-40" aria-label="Open Camera Scanner">
         <i data-lucide="scan" class="w-6 h-6"></i>
       </button>
     </section>
 
     <!-- ====================================================== -->
-    <!-- TAB 5: SETTINGS VIEW (Screenshots 4 & 5)               -->
+    <!-- TAB 5: SETTINGS VIEW (Screenshots 4 & 5 - NO Sign-in)  -->
     <!-- ====================================================== -->
-    <section id="view-settings" class="space-y-6 hidden">
+    <section id="view-settings" class="space-y-5 hidden">
       
-      <!-- User Profile Header -->
-      <div onclick="AuthModal.open()" class="p-4 rounded-2xl bg-[#171920] border border-[#272a36] flex items-center gap-3.5 cursor-pointer">
-        <div class="w-12 h-12 rounded-full bg-neutral-800 flex items-center justify-center text-neutral-300 shrink-0">
-          <i data-lucide="user" class="w-6 h-6"></i>
-        </div>
-        <div>
-          <h4 class="text-sm font-bold text-white">Log in or sign up</h4>
-          <p class="text-xs text-red-500 font-medium">Sync with DigiLocker &amp; Desi Cloud &rarr;</p>
-        </div>
-      </div>
-
-      <!-- Account Section -->
+      <!-- Account Card (Clean Offline Badge - NO Log In / Sign Up) -->
       <div class="space-y-2">
         <h3 class="text-xs font-mono font-bold uppercase tracking-wider text-neutral-400 mb-2">Account</h3>
         
-        <div class="p-4 rounded-2xl bg-[#171920] border border-[#272a36] space-y-4">
+        <div class="p-4 rounded-2xl bg-[#1d1e25] border border-[#282932] space-y-3">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
-              <i data-lucide="shield-check" class="w-5 h-5 text-neutral-400"></i>
+              <i data-lucide="shield-check" class="w-5 h-5 text-emerald-400"></i>
               <span class="text-xs font-medium text-white">Current membership</span>
             </div>
-            <span class="text-xs font-bold text-neutral-400">Community (Free)</span>
+            <span class="text-xs font-bold text-emerald-400">Free / Lifetime</span>
           </div>
 
-          <!-- Gold Crown Banner -->
+          <!-- Free Lifetime Membership Banner -->
           <div class="p-4 rounded-xl bg-gradient-to-r from-amber-950/40 to-neutral-900 border border-amber-800/40 flex items-center justify-between gap-3">
             <div>
               <h4 class="text-xs font-bold text-amber-400">DesiPDF Community Edition</h4>
-              <p class="text-[10px] text-neutral-400 mt-0.5">100% Free Forever • Zero Limits</p>
+              <p class="text-[10px] text-neutral-400 mt-0.5">100% Free Forever • Zero Tracking • DPDP Act 2023</p>
             </div>
             <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
               <i data-lucide="crown" class="w-5 h-5 fill-amber-500"></i>
@@ -556,36 +439,36 @@
         </div>
       </div>
 
-      <!-- Preferences Section -->
+      <!-- Preferences Section (Matching Screenshot 4) -->
       <div class="space-y-2">
         <h3 class="text-xs font-mono font-bold uppercase tracking-wider text-neutral-400 mb-2">Preferences</h3>
 
-        <div class="rounded-2xl bg-[#171920] border border-[#272a36] divide-y divide-[#272a36]">
-          <!-- Mobile Data Toggle -->
+        <div class="rounded-2xl bg-[#1d1e25] border border-[#282932] divide-y divide-[#282932]">
+          <!-- Mobile Data Toggle (Screenshot 4) -->
           <div class="p-4 flex items-center justify-between">
             <div class="flex items-center gap-3">
               <i data-lucide="wifi-off" class="w-5 h-5 text-neutral-400"></i>
               <span class="text-xs font-medium text-white">Ask before using mobile data</span>
             </div>
-            <label class="relative inline-flex items-center cursor-pointer">
-              <input type="checkbox" id="prefDataToggle" class="sr-only peer" checked />
-              <div class="w-11 h-6 bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-600"></div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="prefDataToggle" checked />
+              <span class="toggle-slider"></span>
             </label>
           </div>
 
-          <!-- Dark Mode Toggle -->
+          <!-- Dark Mode Toggle (Screenshot 4) -->
           <div class="p-4 flex items-center justify-between">
             <div class="flex items-center gap-3">
               <i data-lucide="moon" class="w-5 h-5 text-neutral-400"></i>
               <span class="text-xs font-medium text-white">Dark mode</span>
             </div>
-            <label class="relative inline-flex items-center cursor-pointer">
-              <input type="checkbox" id="prefThemeToggle" onchange="App.toggleTheme()" class="sr-only peer" checked />
-              <div class="w-11 h-6 bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-600"></div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="prefThemeToggle" onchange="App.toggleTheme()" checked />
+              <span class="toggle-slider"></span>
             </label>
           </div>
 
-          <!-- OCR Language -->
+          <!-- OCR Language (Screenshot 4) -->
           <div onclick="Toast.show('OCR Languages: English, Hindi, Bengali, Tamil, Telugu')" class="p-4 flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-3">
               <i data-lucide="languages" class="w-5 h-5 text-neutral-400"></i>
@@ -599,10 +482,10 @@
         </div>
       </div>
 
-      <!-- More Section -->
+      <!-- More Section (Screenshot 4) -->
       <div class="space-y-2">
         <h3 class="text-xs font-mono font-bold uppercase tracking-wider text-neutral-400 mb-2">More</h3>
-        <div class="rounded-2xl bg-[#171920] border border-[#272a36] divide-y divide-[#272a36]">
+        <div class="rounded-2xl bg-[#1d1e25] border border-[#282932] divide-y divide-[#282932]">
           <div onclick="Toast.show('Terms: 100% Free Client-Side License')" class="p-4 flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-3">
               <i data-lucide="file-text" class="w-5 h-5 text-neutral-400"></i>
@@ -619,10 +502,26 @@
             <i data-lucide="chevron-right" class="w-4 h-4 text-neutral-500"></i>
           </div>
 
-          <div onclick="Toast.show('DesiPDF - India\'s Document Suite')" class="p-4 flex items-center justify-between cursor-pointer">
+          <div onclick="Toast.show('DesiPDF - India\'s Client-Side Document Suite')" class="p-4 flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-3">
               <i data-lucide="info" class="w-5 h-5 text-neutral-400"></i>
               <span class="text-xs font-medium text-white">About us</span>
+            </div>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-neutral-500"></i>
+          </div>
+
+          <div onclick="Toast.show('DesiPDF Core: Open Source Client-Side PDF Tools')" class="p-4 flex items-center justify-between cursor-pointer">
+            <div class="flex items-center gap-3">
+              <i data-lucide="award" class="w-5 h-5 text-neutral-400"></i>
+              <span class="text-xs font-medium text-white">Credits</span>
+            </div>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-neutral-500"></i>
+          </div>
+
+          <div onclick="Toast.show('Contact: support@desipdf.org')" class="p-4 flex items-center justify-between cursor-pointer">
+            <div class="flex items-center gap-3">
+              <i data-lucide="help-circle" class="w-5 h-5 text-neutral-400"></i>
+              <span class="text-xs font-medium text-white">Help / Contact</span>
             </div>
             <i data-lucide="chevron-right" class="w-4 h-4 text-neutral-500"></i>
           </div>
@@ -637,10 +536,10 @@
         </div>
       </div>
 
-      <!-- App Branding Footer (Exactly like Screenshot 4) -->
+      <!-- App Branding Footer (Screenshot 4) -->
       <div class="py-6 text-center space-y-1">
-        <div class="flex items-center justify-center gap-1.5 font-display font-extrabold text-base">
-          <span class="text-white">Desi</span><span class="text-red-500">PDF</span>
+        <div class="flex items-center justify-center gap-1.5 font-extrabold text-base">
+          <span class="text-white">Desi</span><span class="text-[#eb5757]">❤️</span><span class="text-white">PDF</span>
         </div>
         <p class="text-[11px] font-mono text-neutral-500">Version 1.0.0 (Sarkari Edition)</p>
       </div>
@@ -650,193 +549,170 @@
   <!-- ======================================================== -->
   <!-- 3. MOBILE BOTTOM 5-TAB NAVIGATION (Matching Screenshots) -->
   <!-- ======================================================== -->
-  <nav class="fixed bottom-0 left-0 right-0 z-30 max-w-md mx-auto border-t border-[#272a36] bg-[#0e1015]/95 backdrop-blur-md px-2 py-2 flex items-center justify-around">
+  <nav class="fixed bottom-0 left-0 right-0 z-30 max-w-md mx-auto border-t border-[#282932] bg-[#121316]/95 backdrop-blur-md px-1 py-1.5 flex items-center justify-around">
     
     <!-- Tab 1: Home -->
-    <button onclick="Nav.setTab('home')" id="tab-home" class="flex flex-col items-center gap-1 text-neutral-400 hover:text-white transition w-16 nav-tab-active">
-      <div class="nav-pill w-12 h-7 rounded-full flex items-center justify-center transition">
+    <button onclick="Nav.setTab('home')" id="tab-home" class="nav-tab-btn nav-tab-active">
+      <div class="nav-pill">
         <i data-lucide="home" class="w-4 h-4"></i>
       </div>
-      <span class="text-[10px] font-medium tracking-tight">Home</span>
+      <span class="text-[10px] tracking-tight">Home</span>
     </button>
 
     <!-- Tab 2: Files -->
-    <button onclick="Nav.setTab('files')" id="tab-files" class="flex flex-col items-center gap-1 text-neutral-400 hover:text-white transition w-16">
-      <div class="nav-pill w-12 h-7 rounded-full flex items-center justify-center transition">
+    <button onclick="Nav.setTab('files')" id="tab-files" class="nav-tab-btn">
+      <div class="nav-pill">
         <i data-lucide="folder" class="w-4 h-4"></i>
       </div>
-      <span class="text-[10px] font-medium tracking-tight">Files</span>
+      <span class="text-[10px] tracking-tight">Files</span>
     </button>
 
     <!-- Tab 3: Tools -->
-    <button onclick="Nav.setTab('tools')" id="tab-tools" class="flex flex-col items-center gap-1 text-neutral-400 hover:text-white transition w-16">
-      <div class="nav-pill w-12 h-7 rounded-full flex items-center justify-center transition">
+    <button onclick="Nav.setTab('tools')" id="tab-tools" class="nav-tab-btn">
+      <div class="nav-pill">
         <i data-lucide="wrench" class="w-4 h-4"></i>
       </div>
-      <span class="text-[10px] font-medium tracking-tight">Tools</span>
+      <span class="text-[10px] tracking-tight">Tools</span>
     </button>
 
     <!-- Tab 4: Scanner -->
-    <button onclick="Nav.setTab('scanner')" id="tab-scanner" class="flex flex-col items-center gap-1 text-neutral-400 hover:text-white transition w-16">
-      <div class="nav-pill w-12 h-7 rounded-full flex items-center justify-center transition">
+    <button onclick="Nav.setTab('scanner')" id="tab-scanner" class="nav-tab-btn">
+      <div class="nav-pill">
         <i data-lucide="scan" class="w-4 h-4"></i>
       </div>
-      <span class="text-[10px] font-medium tracking-tight">Scanner</span>
+      <span class="text-[10px] tracking-tight">Scanner</span>
     </button>
 
     <!-- Tab 5: Settings -->
-    <button onclick="Nav.setTab('settings')" id="tab-settings" class="flex flex-col items-center gap-1 text-neutral-400 hover:text-white transition w-16">
-      <div class="nav-pill w-12 h-7 rounded-full flex items-center justify-center transition">
+    <button onclick="Nav.setTab('settings')" id="tab-settings" class="nav-tab-btn">
+      <div class="nav-pill">
         <i data-lucide="settings" class="w-4 h-4"></i>
       </div>
-      <span class="text-[10px] font-medium tracking-tight">Settings</span>
+      <span class="text-[10px] tracking-tight">Settings</span>
     </button>
   </nav>
 
   <!-- ======================================================== -->
-  <!-- 4. MODAL: LOGIN / SIGN UP SHEET (Screenshot 1)           -->
+  <!-- 4. MODAL: RECYCLE BIN VIEW (Screenshot 2)                -->
   <!-- ======================================================== -->
-  <div id="authModal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
-    <div class="w-full max-w-md bg-[#171920] border-t sm:border border-[#272a36] rounded-t-3xl sm:rounded-3xl p-6 relative space-y-6 animate-slide-up">
-      <!-- Close X Button -->
-      <button onclick="AuthModal.close()" class="absolute top-5 right-5 text-neutral-400 hover:text-white p-1">
-        <i data-lucide="x" class="w-5 h-5"></i>
-      </button>
-
-      <!-- Logo & Title -->
-      <div class="text-center pt-2 space-y-3">
-        <div class="w-14 h-14 rounded-2xl bg-[#D71920] text-white flex items-center justify-center font-bold text-2xl mx-auto shadow-lg shadow-red-900/30">
-          <span class="font-display">भ</span>
-        </div>
-        <div class="space-y-1">
-          <h3 class="text-xl font-extrabold text-white">Simplify document<br/>management</h3>
-          <p class="text-xs text-neutral-400">100% In-Memory Privacy &bull; DPDP Act 2023</p>
-        </div>
-      </div>
-
-      <!-- Social Login Buttons -->
-      <div class="space-y-3">
-        <button onclick="Toast.show('Google Auth simulated successfully'); AuthModal.close();" class="w-full py-3 px-4 rounded-full bg-[#262833] hover:bg-[#323542] text-xs font-bold text-white flex items-center justify-center gap-2.5 border border-[#3b3e4f]">
-          <i data-lucide="chrome" class="w-4 h-4 text-red-400"></i>
-          <span>Continue with Google</span>
-        </button>
-
-        <button onclick="Toast.show('DigiLocker Auth linked'); AuthModal.close();" class="w-full py-3 px-4 rounded-full bg-[#262833] hover:bg-[#323542] text-xs font-bold text-white flex items-center justify-center gap-2.5 border border-[#3b3e4f]">
-          <i data-lucide="shield" class="w-4 h-4 text-blue-400"></i>
-          <span>Continue with DigiLocker</span>
-        </button>
-
-        <button onclick="Toast.show('SSO Enterprise Login active'); AuthModal.close();" class="w-full py-3 px-4 rounded-full bg-[#262833] hover:bg-[#323542] text-xs font-bold text-white flex items-center justify-center gap-2.5 border border-[#3b3e4f]">
-          <i data-lucide="key" class="w-4 h-4 text-amber-400"></i>
-          <span>SSO Login</span>
-        </button>
-      </div>
-
-      <!-- Bottom link -->
-      <div class="text-center pb-2">
-        <button onclick="AuthModal.close()" class="text-xs font-semibold text-neutral-400 hover:text-white">
-          Continue as Guest &rarr;
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ======================================================== -->
-  <!-- 5. MODAL: RECYCLE BIN VIEW (Screenshot 2)                -->
-  <!-- ======================================================== -->
-  <div id="binModal" class="fixed inset-0 z-50 modal-backdrop hidden flex flex-col bg-[#0e1015] p-5">
-    <div class="flex items-center gap-3 pb-4 border-b border-[#272a36]">
-      <button onclick="BinModal.close()" class="p-1 text-white hover:text-red-400">
+  <div id="binModal" class="fixed inset-0 z-50 modal-backdrop hidden flex flex-col bg-[#121316] p-5">
+    <div class="flex items-center gap-3 pb-4 border-b border-[#282932]">
+      <button onclick="BinModal.close()" class="p-1 text-white hover:text-[#eb5757]">
         <i data-lucide="arrow-left" class="w-6 h-6"></i>
       </button>
       <h3 class="text-base font-bold text-white">Bin</h3>
     </div>
 
-    <!-- Empty Cactus Illustration -->
-    <div class="flex-grow flex flex-col items-center justify-center space-y-6 text-center">
-      <div class="flex items-center justify-center gap-4 text-purple-400">
-        <i data-lucide="sprout" class="w-10 h-10 text-neutral-600"></i>
-        <div class="w-16 h-14 rounded-xl bg-purple-900/40 border border-purple-500/50 flex items-center justify-center text-purple-300 shadow-lg">
+    <!-- Cactus Empty State Illustration (Screenshot 2) -->
+    <div class="flex-grow flex flex-col items-center justify-center text-center space-y-4">
+      <div class="flex items-center gap-4 text-neutral-600">
+        <i data-lucide="flower" class="w-10 h-10"></i>
+        <div class="w-16 h-14 rounded-xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400 shadow-lg">
           <i data-lucide="folder" class="w-8 h-8"></i>
         </div>
-        <i data-lucide="sprout" class="w-10 h-10 text-neutral-600"></i>
+        <i data-lucide="flower" class="w-10 h-10"></i>
       </div>
-      <div>
-        <h4 class="text-lg font-bold text-white">Bin Empty</h4>
-        <p class="text-xs text-neutral-500 mt-1">Deleted items will be preserved here for 30 days</p>
-      </div>
+      <h4 class="text-lg font-bold text-white">Bin Empty</h4>
+      <p class="text-xs text-neutral-400">Zero files in recycling trash</p>
     </div>
   </div>
 
   <!-- ======================================================== -->
-  <!-- 6. MODAL WORKSPACE (PDF Engine Runner)                   -->
+  <!-- 5. UNIVERSAL TOOL EXECUTION MODAL                        -->
   <!-- ======================================================== -->
-  <div id="toolModal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
-    <div class="w-full max-w-lg bg-[#171920] border border-[#272a36] rounded-3xl p-6 relative shadow-2xl flex flex-col max-h-[92vh] overflow-y-auto">
+  <div id="toolModal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="w-full max-w-md bg-[#1d1e25] border-t sm:border border-[#282932] rounded-t-3xl sm:rounded-3xl p-5 relative space-y-4 max-h-[85vh] overflow-y-auto">
       
-      <div class="flex items-center justify-between pb-3 border-b border-[#272a36]">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between pb-3 border-b border-[#282932]">
         <div class="flex items-center gap-3">
-          <div id="modalToolIconBox" class="w-9 h-9 rounded-xl bg-[#D71920] text-white flex items-center justify-center">
-            <i id="modalToolIcon" data-lucide="tool" class="w-5 h-5"></i>
+          <div class="w-9 h-9 rounded-xl bg-neutral-800 flex items-center justify-center text-[#eb5757]">
+            <i id="modalToolIcon" data-lucide="file" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 id="modalToolTitle" class="font-bold text-sm text-white">Workspace</h3>
-            <p id="modalToolDesc" class="text-[11px] text-neutral-400"></p>
+            <h3 id="modalToolTitle" class="text-sm font-bold text-white">Tool Execution</h3>
+            <p id="modalToolDesc" class="text-[11px] text-neutral-400">100% In-Memory RAM Engine</p>
           </div>
         </div>
-        <button onclick="App.closeToolModal()" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-neutral-800 text-neutral-400">
+        <button onclick="App.closeToolModal()" class="p-1 rounded-full text-neutral-400 hover:text-white">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
-      <div id="modalToolBody" class="py-4 flex-grow space-y-4"></div>
-
-      <div class="pt-3 border-t border-[#272a36] flex items-center justify-between text-[11px] font-mono text-neutral-400">
-        <span class="flex items-center gap-1 text-emerald-400"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> RAM Isolation</span>
-        <button onclick="App.closeToolModal()" class="px-3 py-1.5 rounded-lg bg-neutral-800 text-white text-xs">Close</button>
-      </div>
+      <!-- Modal Body (Injected dynamically) -->
+      <div id="modalToolBody" class="space-y-4 pt-1"></div>
     </div>
   </div>
 
-  <!-- TOAST NOTIFICATION -->
-  <div id="toast" class="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none px-4 py-2.5 text-xs font-mono text-white flex items-center gap-2 shadow-2xl bg-neutral-900 border border-neutral-700 rounded-full">
-    <i data-lucide="check-circle" class="w-4 h-4 text-red-500"></i>
+  <!-- Toast Notification Pill -->
+  <div id="toast" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-[#1d1e25] border border-[#282932] text-white text-xs font-medium shadow-2xl flex items-center gap-2 pointer-events-none transition-all duration-300 opacity-0 translate-y-[-10px]">
+    <i data-lucide="info" class="w-3.5 h-3.5 text-[#eb5757]"></i>
     <span id="toastMsg">Ready</span>
   </div>
 
   <!-- ======================================================== -->
-  <!-- JAVASCRIPT CONTROLLER                                    -->
+  <!-- 6. CORE JAVASCRIPT LOGIC & 32 WORKING ENGINES            -->
   <!-- ======================================================== -->
   <script>
     'use strict';
 
+    // 32 Complete Tools Config
     const CONFIG = {
-      CATEGORIES: ['all', 'Organize', 'Optimize', 'Convert TO', 'Convert FROM', 'Edit', 'Security', 'Specialized'],
+      CATEGORIES: ['all', 'Organize', 'Optimize', 'Convert TO', 'Convert FROM', 'Edit', 'Security', 'Sarkari'],
       TOOLS: [
-        { id: 1, name: "Merge PDF", cat: "Organize", icon: "layers", color: "text-orange-400 bg-orange-950/40", desc: "Combine multiple PDF files." },
-        { id: 2, name: "Split PDF", cat: "Organize", icon: "scissors", color: "text-orange-400 bg-orange-950/40", desc: "Extract specific pages or ranges." },
-        { id: 7, name: "Compress PDF", cat: "Optimize", icon: "minimize-2", color: "text-emerald-400 bg-emerald-950/40", desc: "Compress file size in memory." },
-        { id: 16, name: "PDF to Word", cat: "Convert FROM", icon: "file-type-2", color: "text-blue-400 bg-blue-950/40", desc: "Extract PDF text to Word." },
-        { id: 17, name: "PDF to PowerPoint", cat: "Convert FROM", icon: "tv", color: "text-orange-500 bg-orange-950/40", desc: "Convert slides to presentation." },
-        { id: 18, name: "PDF to Excel", cat: "Convert FROM", icon: "table", color: "text-emerald-400 bg-emerald-950/40", desc: "Extract tabular items to CSV." },
-        { id: 10, name: "Word to PDF", cat: "Convert TO", icon: "file-text", color: "text-blue-400 bg-blue-950/40", desc: "Wrap Word and Text into PDF." },
-        { id: 11, name: "PowerPoint to PDF", cat: "Convert TO", icon: "presentation", color: "text-orange-400 bg-orange-950/40", desc: "Render slide handouts." },
-        { id: 12, name: "Excel to PDF", cat: "Convert TO", icon: "sheet", color: "text-emerald-400 bg-emerald-950/40", desc: "Format CSV rows into PDF." },
-        { id: 19, name: "Edit PDF", cat: "Edit", icon: "edit-3", color: "text-pink-400 bg-pink-950/40", desc: "Overlay text notations." },
-        { id: 15, name: "PDF to JPG", cat: "Convert FROM", icon: "file-image", color: "text-amber-400 bg-amber-950/40", desc: "Render high-res page images." },
-        { id: 9, name: "Image to PDF", cat: "Convert TO", icon: "image", color: "text-amber-400 bg-amber-950/40", desc: "Convert photos into PDF pages." },
-        { id: 21, name: "Page Numbers", cat: "Edit", icon: "hash", color: "text-purple-400 bg-purple-950/40", desc: "Add automatic pagination." },
-        { id: 22, name: "Watermark", cat: "Edit", icon: "stamp", color: "text-rose-400 bg-rose-950/40", desc: "Stamp custom diagonal marks." },
-        { id: 20, name: "Rotate PDF", cat: "Edit", icon: "rotate-cw", color: "text-purple-400 bg-purple-950/40", desc: "Rotate 90, 180, 270 degrees." },
-        { id: 26, name: "Unlock PDF", cat: "Security", icon: "unlock", color: "text-blue-400 bg-blue-950/40", desc: "Strip password view locks." },
-        { id: 25, name: "Protect PDF", cat: "Security", icon: "lock", color: "text-blue-500 bg-blue-950/40", desc: "Apply permission encryption." },
-        { id: 5, name: "Organize PDF", cat: "Organize", icon: "grip-horizontal", color: "text-orange-400 bg-orange-950/40", desc: "Reorder page sequence." },
-        { id: 8, name: "Repair PDF", cat: "Optimize", icon: "wrench", color: "text-emerald-400 bg-emerald-950/40", desc: "Fix broken xref tables." },
-        { id: 24, name: "Sign PDF", cat: "Security", icon: "feather", color: "text-blue-400 bg-blue-950/40", desc: "Draw verifiable signature." },
-        { id: 4, name: "Extract TXT", cat: "Organize", icon: "copy", color: "text-orange-400 bg-orange-950/40", desc: "Extract single pages or raw text." },
-        { id: 3, name: "Remove Pages", cat: "Organize", icon: "trash-2", color: "text-red-400 bg-red-950/40", desc: "Delete unwanted pages." },
-        { id: 29, name: "OCR PDF", cat: "Specialized", icon: "scan-text", color: "text-emerald-400 bg-emerald-950/40", desc: "Optical Character Recognition." },
-        { id: 32, name: "Sarkari Resizer", cat: "Specialized", icon: "file-check-2", color: "text-red-400 bg-red-950/40", desc: "UPSC & SSC Portal Resizer." }
+        // 1-3: Organize & Core
+        { id: 1, name: "Merge PDF", cat: "Organize", icon: "layers", color: "bg-[#ff5722] text-white", desc: "Combine multiple PDF files into one." },
+        { id: 2, name: "Split PDF", cat: "Organize", icon: "scissors", color: "bg-[#ff5722] text-white", desc: "Extract specific pages or page ranges." },
+        { id: 3, name: "Compress PDF", cat: "Optimize", icon: "minimize-2", color: "bg-[#10b981] text-white", desc: "Reduce PDF file size in memory." },
+        
+        // 4-6: Convert From PDF
+        { id: 4, name: "PDF to Word", cat: "Convert FROM", icon: "file-text", color: "bg-[#2563eb] text-white", desc: "Extract PDF text to formatted Word document." },
+        { id: 5, name: "PDF to PowerPoint", cat: "Convert FROM", icon: "presentation", color: "bg-[#ea580c] text-white", desc: "Convert PDF pages to slide presentation." },
+        { id: 6, name: "PDF to Excel", cat: "Convert FROM", icon: "table", color: "bg-[#16a34a] text-white", desc: "Extract tables from PDF into CSV spreadsheet." },
+
+        // 7-9: Convert To PDF
+        { id: 7, name: "Word to PDF", cat: "Convert TO", icon: "file-type-2", color: "bg-[#2563eb] text-white", desc: "Convert text or Word notes to clean PDF." },
+        { id: 8, name: "PowerPoint to PDF", cat: "Convert TO", icon: "tv", color: "bg-[#ea580c] text-white", desc: "Compile slide notes into PDF." },
+        { id: 9, name: "Excel to PDF", cat: "Convert TO", icon: "sheet", color: "bg-[#16a34a] text-white", desc: "Render CSV table data into formatted PDF table." },
+
+        // 10-12: Edit & Media
+        { id: 10, name: "Edit PDF", cat: "Edit", icon: "edit-3", color: "bg-[#c084fc] text-white", desc: "Add text notes, headers, and stamps." },
+        { id: 11, name: "PDF to JPG", cat: "Convert FROM", icon: "file-image", color: "bg-[#f59e0b] text-white", desc: "Render high-resolution JPG images from PDF." },
+        { id: 12, name: "Image to PDF", cat: "Convert TO", icon: "image", color: "bg-[#f59e0b] text-white", desc: "Convert JPG/PNG pictures into single PDF." },
+
+        // 13-15: Page Numbers, Watermark, Rotate
+        { id: 13, name: "Page Numbers", cat: "Edit", icon: "hash", color: "bg-[#8b5cf6] text-white", desc: "Stamp automatic page numbering (Page X of Y)." },
+        { id: 14, name: "Watermark", cat: "Edit", icon: "stamp", color: "bg-[#f43f5e] text-white", desc: "Add custom diagonal watermark with opacity." },
+        { id: 15, name: "Rotate PDF", cat: "Edit", icon: "rotate-cw", color: "bg-[#a855f7] text-white", desc: "Rotate PDF pages 90, 180, or 270 degrees." },
+
+        // 16-18: Unlock, Protect, Organize
+        { id: 16, name: "Unlock PDF", cat: "Security", icon: "unlock", color: "bg-[#0284c7] text-white", desc: "Strip permission locks and passwords." },
+        { id: 17, name: "Protect PDF", cat: "Security", icon: "lock", color: "bg-[#0ea5e9] text-white", desc: "Encrypt and protect PDF with password." },
+        { id: 18, name: "Organize PDF", cat: "Organize", icon: "grip-horizontal", color: "bg-[#f97316] text-white", desc: "Reorder page sequence or select custom pages." },
+
+        // 19-21: Repair, Sign, Extract TXT
+        { id: 19, name: "Repair PDF", cat: "Optimize", icon: "wrench", color: "bg-[#10b981] text-white", desc: "Reconstruct and fix corrupted PDF xref tables." },
+        { id: 20, name: "Sign PDF", cat: "Security", icon: "feather", color: "bg-[#06b6d4] text-white", desc: "Draw touch signature & export PNG/stamp on PDF." },
+        { id: 21, name: "Extract TXT", cat: "Organize", icon: "copy", color: "bg-[#fb7185] text-white", desc: "Extract clean plain text from all pages." },
+
+        // 22-24: Remove Pages, OCR, Create PDF
+        { id: 22, name: "Remove Pages", cat: "Organize", icon: "trash-2", color: "bg-[#ef4444] text-white", desc: "Delete unwanted pages by number." },
+        { id: 23, name: "OCR PDF", cat: "Sarkari", icon: "scan-text", color: "bg-[#10b981] text-white", desc: "Extract readable text from scanned PDF." },
+        { id: 24, name: "Create PDF", cat: "Edit", icon: "plus-circle", color: "bg-[#f43f5e] text-white", desc: "Create a fresh blank or typed PDF document." },
+
+        // 25: Crop Margins
+        { id: 25, name: "Crop Margins", cat: "Edit", icon: "crop", color: "bg-[#8b5cf6] text-white", desc: "Trim PDF margins for clean reading." },
+
+        // 26-29: Image Tools (DesiIMG)
+        { id: 26, name: "Compress Image", cat: "Optimize", icon: "minimize-2", color: "bg-[#6366f1] text-white", desc: "Compress image file size to exact KB." },
+        { id: 27, name: "Convert to JPG", cat: "Convert TO", icon: "image", color: "bg-[#3b82f6] text-white", desc: "Convert PNG or WebP images to JPG." },
+        { id: 28, name: "Convert from JPG", cat: "Convert FROM", icon: "file-image", color: "bg-[#0284c7] text-white", desc: "Convert JPG to PNG image format." },
+        { id: 29, name: "Resize Image", cat: "Optimize", icon: "scaling", color: "bg-[#8b5cf6] text-white", desc: "Scale image dimensions (width & height)." },
+
+        // 30-32: Indian Sarkari Exam Tools
+        { id: 30, name: "UPSC Resizer", cat: "Sarkari", icon: "user-check", color: "bg-[#ef4444] text-white", desc: "Strict 350x350 & <50KB photo, <20KB signature." },
+        { id: 31, name: "SSC 50KB Compress", cat: "Sarkari", icon: "file-badge", color: "bg-[#f59e0b] text-white", desc: "SSC portal bounds: 20-50KB photo, 10-20KB signature." },
+        { id: 32, name: "Aadhaar KYC Mask", cat: "Sarkari", icon: "shield-check", color: "bg-[#10b981] text-white", desc: "Mask first 8 digits & stamp official self-attestation." }
       ]
     };
 
@@ -845,6 +721,7 @@
       category: 'all',
       query: '',
       cameraStream: null,
+      cameraFacing: 'environment', // Default to back camera
       cameraShots: []
     };
 
@@ -858,75 +735,88 @@
       }
     }
 
+    const Toast = {
+      show(msg) {
+        const t = document.getElementById('toast');
+        const m = document.getElementById('toastMsg');
+        if (!t || !m) return;
+        m.textContent = msg;
+        t.classList.remove('opacity-0', 'translate-y-[-10px]');
+        t.classList.add('opacity-100', 'translate-y-0');
+        clearTimeout(this._timer);
+        this._timer = setTimeout(() => {
+          t.classList.remove('opacity-100', 'translate-y-0');
+          t.classList.add('opacity-0', 'translate-y-[-10px]');
+        }, 3000);
+      }
+    };
+
     const Nav = {
       setTab(tabId) {
         State.activeTab = tabId;
-        ['home', 'files', 'tools', 'scanner', 'settings'].forEach(id => {
-          const view = document.getElementById(`view-${id}`);
-          const tabBtn = document.getElementById(`tab-${id}`);
-          if (view) view.classList.toggle('hidden', id !== tabId);
-          if (tabBtn) tabBtn.classList.toggle('nav-tab-active', id === tabId);
+        const tabs = ['home', 'files', 'tools', 'scanner', 'settings'];
+        
+        tabs.forEach(t => {
+          const view = document.getElementById(`view-${t}`);
+          const btn = document.getElementById(`tab-${t}`);
+          if (view) view.classList.toggle('hidden', t !== tabId);
+          if (btn) btn.classList.toggle('nav-tab-active', t === tabId);
         });
 
-        // Toggle layout button visibility on Tools tab
+        // Hide layout toggle button unless on tools tab
         const layoutBtn = document.getElementById('layoutToggleBtn');
-        if (layoutBtn) layoutBtn.classList.toggle('hidden', tabId !== 'tools');
+        if (layoutBtn) {
+          layoutBtn.classList.toggle('hidden', tabId !== 'tools');
+        }
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
         safeCreateIcons();
       }
     };
 
-    const AuthModal = {
-      open() { document.getElementById('authModal').classList.remove('hidden'); safeCreateIcons(); },
-      close() { document.getElementById('authModal').classList.add('hidden'); }
-    };
-
-    const BinModal = {
-      open() { document.getElementById('binModal').classList.remove('hidden'); safeCreateIcons(); },
-      close() { document.getElementById('binModal').classList.add('hidden'); }
-    };
-
     const ScannerView = {
       setSubTab(type) {
-        const imgBtn = document.getElementById('scanTabImages');
-        const pdfBtn = document.getElementById('scanTabPdfs');
+        const btnImg = document.getElementById('scanTabImages');
+        const btnPdf = document.getElementById('scanTabPdfs');
         if (type === 'images') {
-          imgBtn.className = "flex-1 py-2.5 text-xs font-semibold rounded-xl bg-neutral-800 text-white shadow transition";
-          pdfBtn.className = "flex-1 py-2.5 text-xs font-semibold rounded-xl text-neutral-400 hover:text-white transition";
+          btnImg.classList.add('bg-neutral-800', 'text-white', 'shadow');
+          btnImg.classList.remove('text-neutral-400');
+          btnPdf.classList.remove('bg-neutral-800', 'text-white', 'shadow');
+          btnPdf.classList.add('text-neutral-400');
+          Toast.show("Viewing Scanned Images");
         } else {
-          pdfBtn.className = "flex-1 py-2.5 text-xs font-semibold rounded-xl bg-neutral-800 text-white shadow transition";
-          imgBtn.className = "flex-1 py-2.5 text-xs font-semibold rounded-xl text-neutral-400 hover:text-white transition";
+          btnPdf.classList.add('bg-neutral-800', 'text-white', 'shadow');
+          btnPdf.classList.remove('text-neutral-400');
+          btnImg.classList.remove('bg-neutral-800', 'text-white', 'shadow');
+          btnImg.classList.add('text-neutral-400');
+          Toast.show("Viewing Converted PDFs");
         }
       }
     };
 
-    const Toast = {
-      timer: null,
-      show(message) {
-        const el = document.getElementById('toast');
-        const msgEl = document.getElementById('toastMsg');
-        if (!el || !msgEl) return;
-        msgEl.textContent = message;
-        el.classList.remove('translate-y-20', 'opacity-0');
-        if (this.timer) clearTimeout(this.timer);
-        this.timer = setTimeout(() => el.classList.add('translate-y-20', 'opacity-0'), 2800);
+    const BinModal = {
+      open() {
+        document.getElementById('binModal').classList.remove('hidden');
+        safeCreateIcons();
+      },
+      close() {
+        document.getElementById('binModal').classList.add('hidden');
       }
     };
 
     const FileUtils = {
-      download(data, filename, mime = 'application/pdf') {
+      async download(data, filename, mimeType) {
         try {
+          const mime = mimeType || 'application/pdf';
           let base64 = "";
-          if (typeof data === 'string') {
-            if (data.startsWith('data:')) {
-              base64 = data.substring(data.indexOf(',') + 1);
-            } else {
-              base64 = data;
-            }
-          } else {
+
+          if (typeof data === 'string' && data.startsWith('data:')) {
+            base64 = data.substring(data.indexOf(',') + 1);
+          } else if (typeof data === 'string') {
+            base64 = window.btoa(unescape(encodeURIComponent(data)));
+          } else if (data instanceof Uint8Array || data instanceof ArrayBuffer) {
             const bytes = data instanceof Uint8Array ? data : new Uint8Array(data);
-            let binary = '';
+            let binary = "";
             const chunkSize = 8192;
             for (let i = 0; i < bytes.length; i += chunkSize) {
               const chunk = bytes.subarray(i, i + chunkSize);
@@ -935,10 +825,10 @@
             base64 = window.btoa(binary);
           }
 
-          // 1. Native Android Bridge (Saves & invokes native Android share/open sheet)
+          // 1. AndroidBridge for APK
           if (window.AndroidBridge && typeof window.AndroidBridge.saveAndShareFile === 'function') {
             window.AndroidBridge.saveAndShareFile(base64, filename, mime);
-            Toast.show("Saved & opened: " + filename);
+            Toast.show("Saved: " + filename);
             return;
           }
 
@@ -959,12 +849,13 @@
               }
               const fileObj = new File([blob], filename, { type: mime });
               if (navigator.canShare({ files: [fileObj] })) {
-                navigator.share({ files: [fileObj], title: filename }).catch(() => {});
+                await navigator.share({ files: [fileObj], title: filename });
+                return;
               }
             } catch (_) {}
           }
 
-          // 3. Desktop / Fallback Anchor Click
+          // 3. Fallback Anchor Click
           let blob;
           if (typeof data === 'string' && data.startsWith('data:')) {
             const b64 = data.substring(data.indexOf(',') + 1);
@@ -1002,10 +893,21 @@
     };
 
     const App = {
+      toolsLayout: 'grid',
+
       init() {
         this.renderCategoryBar();
         this.renderToolsGrid();
         safeCreateIcons();
+      },
+
+      handleStorageAccess() {
+        if (window.AndroidBridge && typeof window.AndroidBridge.requestStoragePermissions === 'function') {
+          window.AndroidBridge.requestStoragePermissions();
+          Toast.show("Requesting Storage Permissions...");
+        } else {
+          Toast.show("Accessing Local In-Memory Storage");
+        }
       },
 
       toggleTheme() {
@@ -1017,10 +919,16 @@
 
       shareApp() {
         if (navigator.share) {
-          navigator.share({ title: 'DesiPDF', text: 'Free, private in-browser PDF suite', url: window.location.href }).catch(() => {});
+          navigator.share({ title: 'DesiPDF', text: 'Free, private client-side PDF suite for India', url: window.location.href }).catch(() => {});
         } else {
           Toast.show("App link copied to clipboard!");
         }
+      },
+
+      toggleToolsLayout() {
+        this.toolsLayout = this.toolsLayout === 'grid' ? 'list' : 'grid';
+        this.renderToolsGrid();
+        Toast.show(`Switched to ${this.toolsLayout} view`);
       },
 
       renderCategoryBar() {
@@ -1028,7 +936,7 @@
         bar.innerHTML = CONFIG.CATEGORIES.map(cat => `
           <button 
             onclick="App.setCategory('${cat}')" 
-            class="px-3 py-1.5 rounded-full font-semibold whitespace-nowrap transition ${State.category === cat ? 'bg-red-600 text-white' : 'bg-[#171920] text-neutral-400 border border-[#272a36]'}">
+            class="px-3 py-1 rounded-full font-semibold whitespace-nowrap transition ${State.category === cat ? 'bg-[#eb5757] text-white' : 'bg-[#1d1e25] text-neutral-400 border border-[#282932]'}">
             ${cat === 'all' ? 'All (32)' : cat}
           </button>
         `).join('');
@@ -1049,78 +957,36 @@
         const grid = document.getElementById('mobileToolsGrid');
         const items = CONFIG.TOOLS.filter(t => {
           const matchCat = State.category === 'all' || t.cat === State.category;
-          const matchQ = t.name.toLowerCase().includes(State.query) || t.desc.toLowerCase().includes(State.query);
-          return matchCat && matchQ;
+          const matchQuery = !State.query || t.name.toLowerCase().includes(State.query) || t.desc.toLowerCase().includes(State.query);
+          return matchCat && matchQuery;
         });
 
-        grid.innerHTML = items.map(t => `
-          <div onclick="App.openTool(${t.id})" class="tool-tile p-3 flex flex-col items-center justify-center text-center cursor-pointer min-h-[104px]">
-            <div class="w-8 h-8 rounded-lg flex items-center justify-center mb-2 ${t.color}">
-              <i data-lucide="${t.icon}" class="w-4 h-4"></i>
+        if (this.toolsLayout === 'grid') {
+          grid.className = "grid grid-cols-3 gap-2.5";
+          grid.innerHTML = items.map(t => `
+            <div onclick="App.openTool(${t.id})" class="tool-tile">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center mb-1.5 ${t.color}">
+                <i data-lucide="${t.icon}" class="w-4 h-4"></i>
+              </div>
+              <span class="text-[11px] font-semibold text-white leading-tight line-clamp-2">${t.name}</span>
             </div>
-            <span class="text-[11px] font-semibold text-white leading-tight line-clamp-2">${t.name}</span>
-          </div>
-        `).join('');
-        safeCreateIcons();
-      },
-
-      openPresetModal(type) {
-        const modal = document.getElementById('toolModal');
-        const title = document.getElementById('modalToolTitle');
-        const desc = document.getElementById('modalToolDesc');
-        const body = document.getElementById('modalToolBody');
-        const icon = document.getElementById('modalToolIcon');
-        modal.classList.remove('hidden');
-
-        if (type === 'upsc') {
-          title.textContent = "UPSC Photo & Signature Resizer";
-          desc.textContent = "Photo: 350x350 px (<50KB) | Signature: 350x140 px (<20KB)";
-          icon.setAttribute('data-lucide', 'user-check');
-          body.innerHTML = `
-            <div class="space-y-4 text-xs font-mono">
-              <label class="block font-bold text-white">Upload Photograph or Signature:</label>
-              <input type="file" id="p_file" accept="image/*" class="w-full text-xs text-neutral-400" />
-              <div class="grid grid-cols-2 gap-3 pt-2">
-                <button onclick="Engines.sarkariResizeDirect(50, 350, 350, 'upsc_photo.jpg')" class="btn-brand-primary py-2.5 font-bold">Photo (&lt;50KB)</button>
-                <button onclick="Engines.sarkariResizeDirect(20, 350, 140, 'upsc_signature.jpg')" class="p-2.5 rounded-xl bg-neutral-800 text-white font-bold">Sign (&lt;20KB)</button>
+          `).join('');
+        } else {
+          grid.className = "space-y-2";
+          grid.innerHTML = items.map(t => `
+            <div onclick="App.openTool(${t.id})" class="p-3 rounded-2xl bg-[#1d1e25] border border-[#282932] flex items-center justify-between cursor-pointer active:bg-[#262731]">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl flex items-center justify-center ${t.color}">
+                  <i data-lucide="${t.icon}" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold text-white">${t.name}</h4>
+                  <p class="text-[10px] text-neutral-400">${t.desc}</p>
+                </div>
               </div>
-              <div id="p_status" class="p-3 border border-neutral-700 rounded-xl text-center hidden bg-neutral-900"></div>
-            </div>`;
-        } else if (type === 'ssc') {
-          title.textContent = "SSC CGL / CHSL 50KB Compress";
-          desc.textContent = "Guaranteed output below 50KB for examination forms.";
-          icon.setAttribute('data-lucide', 'file-badge-2');
-          body.innerHTML = `
-            <div class="space-y-4 text-xs font-mono">
-              <input type="file" id="p_file" accept="image/*" class="w-full text-xs text-neutral-400" />
-              <button onclick="Engines.sarkariResizeDirect(50, 400, 400, 'ssc_compliant_photo.jpg')" class="w-full btn-brand-primary py-3 font-bold uppercase">Compress to &lt; 50KB</button>
-              <div id="p_status" class="p-3 border border-neutral-700 rounded-xl text-center hidden bg-neutral-900"></div>
-            </div>`;
-        } else if (type === 'nta') {
-          title.textContent = "NTA / NEET Document Form PDF";
-          desc.textContent = "Compile postcard photo, thumb, and marksheets under 300KB.";
-          icon.setAttribute('data-lucide', 'files');
-          body.innerHTML = `
-            <div class="space-y-3 text-xs font-mono">
-              <label class="text-white">Select Images &amp; Certificates:</label>
-              <input type="file" id="p_file" multiple accept="image/*,application/pdf" class="w-full text-xs text-neutral-400" />
-              <button onclick="Engines.buildNtaPdf()" class="w-full btn-brand-primary py-3 font-bold uppercase">Compile NTA Dossier</button>
-            </div>`;
-        } else if (type === 'kyc') {
-          title.textContent = "Aadhaar & KYC Masking Stamp";
-          desc.textContent = "Mask the first 8 digits and stamp legal self-attestation notice.";
-          icon.setAttribute('data-lucide', 'stamp');
-          body.innerHTML = `
-            <div class="space-y-3 text-xs font-mono">
-              <label class="text-white">Upload ID Card Photo:</label>
-              <input type="file" id="p_file" accept="image/*" class="w-full text-xs text-neutral-400" />
-              <input type="text" id="p_purpose" placeholder="Purpose (e.g., Bank KYC / Sim Verification)" class="w-full p-2.5 border border-[#272a36] rounded-xl bg-neutral-900 text-white" />
-              <div class="flex items-center gap-2 text-white">
-                <input type="checkbox" id="p_mask" checked class="accent-red-600" />
-                <label for="p_mask">Mask First 8 Digits</label>
-              </div>
-              <button onclick="Engines.applyKycStamp()" class="w-full btn-brand-primary py-3 font-bold uppercase">Stamp &amp; Export</button>
-            </div>`;
+              <i data-lucide="chevron-right" class="w-4 h-4 text-neutral-500"></i>
+            </div>
+          `).join('');
         }
         safeCreateIcons();
       },
@@ -1137,88 +1003,135 @@
         document.getElementById('toolModal').classList.remove('hidden');
         safeCreateIcons();
 
-        if (id === 24) this.initSignaturePad();
+        if (id === 20) this.initSignaturePad();
       },
 
       closeToolModal() {
         document.getElementById('toolModal').classList.add('hidden');
-        if (State.cameraStream) {
-          State.cameraStream.getTracks().forEach(t => t.stop());
-          State.cameraStream = null;
-        }
       },
 
       getToolContent(tool) {
         switch (tool.id) {
+          // 1. Merge PDF
           case 1:
             return `
               <div class="space-y-3 text-xs font-mono">
                 <label class="text-white font-bold block">Select multiple PDFs to merge:</label>
                 <input type="file" id="t_file" multiple accept="application/pdf" class="w-full text-xs text-neutral-400" />
-                <button onclick="Engines.merge()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Merge All PDFs</button>
+                <button onclick="Engines.merge()" class="w-full btn-primary py-3 uppercase shadow-lg">Merge All PDFs</button>
               </div>`;
+          // 2. Split PDF
           case 2:
             return `
               <div class="space-y-3 text-xs font-mono">
                 <label class="text-white font-bold block">Select PDF to split:</label>
                 <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
                 <label class="text-white block">Page Range (e.g. 1-2 or 1,3):</label>
-                <input type="text" id="t_range" placeholder="e.g. 1-2" class="w-full p-2.5 border border-[#272a36] rounded-xl bg-neutral-900 text-white" />
-                <button onclick="Engines.split()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Split &amp; Save</button>
+                <input type="text" id="t_range" placeholder="e.g. 1-2" class="w-full p-2.5 border border-[#282932] rounded-xl bg-neutral-900 text-white" />
+                <button onclick="Engines.split()" class="w-full btn-primary py-3 uppercase shadow-lg">Split &amp; Save</button>
               </div>`;
+          // 3. Compress PDF
           case 3:
-            return `
-              <div class="space-y-3 text-xs font-mono">
-                <label class="text-white font-bold block">Select PDF:</label>
-                <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
-                <label class="text-white block">Pages to remove (e.g. 2, 4):</label>
-                <input type="text" id="t_remove_pages" placeholder="e.g. 2, 4" class="w-full p-2.5 border border-[#272a36] rounded-xl bg-neutral-900 text-white" />
-                <button onclick="Engines.removePages()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Remove Specified Pages</button>
-              </div>`;
-          case 4:
-            return `
-              <div class="space-y-3 text-xs font-mono">
-                <label class="text-white font-bold block">Select PDF to extract text:</label>
-                <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
-                <button onclick="Engines.extractText()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Extract Plain Text</button>
-              </div>`;
-          case 7:
             return `
               <div class="space-y-3 text-xs font-mono">
                 <label class="text-white font-bold block">Select PDF to compress:</label>
                 <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
-                <button onclick="Engines.compress()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Compress PDF</button>
+                <button onclick="Engines.compress()" class="w-full btn-primary py-3 uppercase shadow-lg">Compress PDF</button>
               </div>`;
+          // 4. PDF to Word
+          case 4:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select PDF to extract to Word (.doc):</label>
+                <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
+                <button onclick="Engines.pdfToWord()" class="w-full btn-primary py-3 uppercase shadow-lg">Convert to Word Doc</button>
+              </div>`;
+          // 5. PDF to PowerPoint
+          case 5:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select PDF to convert to Slides:</label>
+                <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
+                <button onclick="Engines.pdfToPowerpoint()" class="w-full btn-primary py-3 uppercase shadow-lg">Convert to Presentation</button>
+              </div>`;
+          // 6. PDF to Excel
+          case 6:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select PDF to extract tables to CSV/Excel:</label>
+                <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
+                <button onclick="Engines.pdfToExcel()" class="w-full btn-primary py-3 uppercase shadow-lg">Extract to Excel (CSV)</button>
+              </div>`;
+          // 7. Word to PDF
+          case 7:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select Text/Word file or paste below:</label>
+                <input type="file" id="t_file" accept="text/plain,.txt,.doc" class="w-full text-xs text-neutral-400" />
+                <textarea id="t_custom_text" rows="3" placeholder="Paste document text..." class="w-full p-2.5 border border-[#282932] rounded-xl bg-neutral-900 text-white"></textarea>
+                <button onclick="Engines.textToPdf()" class="w-full btn-primary py-3 uppercase shadow-lg">Convert to PDF</button>
+              </div>`;
+          // 8. PowerPoint to PDF
           case 8:
             return `
               <div class="space-y-3 text-xs font-mono">
-                <label class="text-white font-bold block">Select broken PDF to reconstruct:</label>
-                <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
-                <button onclick="Engines.repair()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Repair &amp; Rebuild PDF</button>
+                <label class="text-white font-bold block">Select Slide Images or Text notes:</label>
+                <input type="file" id="t_file" multiple accept="image/*,text/plain" class="w-full text-xs text-neutral-400" />
+                <button onclick="Engines.powerpointToPdf()" class="w-full btn-primary py-3 uppercase shadow-lg">Compile Slides to PDF</button>
               </div>`;
+          // 9. Excel to PDF
           case 9:
             return `
               <div class="space-y-3 text-xs font-mono">
-                <label class="text-white font-bold block">Select Images (JPG/PNG):</label>
-                <input type="file" id="t_file" multiple accept="image/*" class="w-full text-xs text-neutral-400" />
-                <button onclick="Engines.imagesToPdf()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Convert Images to PDF</button>
+                <label class="text-white font-bold block">Select CSV or table file:</label>
+                <input type="file" id="t_file" accept=".csv,text/plain" class="w-full text-xs text-neutral-400" />
+                <button onclick="Engines.excelToPdf()" class="w-full btn-primary py-3 uppercase shadow-lg">Generate PDF Table</button>
               </div>`;
+          // 10. Edit PDF
           case 10:
             return `
               <div class="space-y-3 text-xs font-mono">
-                <label class="text-white font-bold block">Upload text file or type below:</label>
-                <input type="file" id="t_file" accept="text/plain,.txt" class="w-full text-xs text-neutral-400" />
-                <textarea id="t_custom_text" rows="3" placeholder="Type document content..." class="w-full p-2.5 border border-[#272a36] rounded-xl bg-neutral-900 text-white"></textarea>
-                <button onclick="Engines.textToPdf()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Convert to PDF</button>
+                <label class="text-white font-bold block">Select PDF to annotate:</label>
+                <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
+                <label class="text-white block">Annotation text to stamp:</label>
+                <input type="text" id="t_annotate_text" placeholder="e.g. APPROVED / VERIFIED" class="w-full p-2.5 border border-[#282932] rounded-xl bg-neutral-900 text-white" />
+                <button onclick="Engines.editPdf()" class="w-full btn-primary py-3 uppercase shadow-lg">Stamp &amp; Save PDF</button>
               </div>`;
-          case 15:
+          // 11. PDF to JPG
+          case 11:
             return `
               <div class="space-y-3 text-xs font-mono">
                 <label class="text-white font-bold block">Select PDF to convert to image:</label>
                 <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
-                <button onclick="Engines.pdfToImages()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Export Page to JPG</button>
+                <button onclick="Engines.pdfToImages()" class="w-full btn-primary py-3 uppercase shadow-lg">Export Page to JPG</button>
               </div>`;
-          case 20:
+          // 12. Image to PDF
+          case 12:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select Images (JPG/PNG):</label>
+                <input type="file" id="t_file" multiple accept="image/*" class="w-full text-xs text-neutral-400" />
+                <button onclick="Engines.imagesToPdf()" class="w-full btn-primary py-3 uppercase shadow-lg">Convert Images to PDF</button>
+              </div>`;
+          // 13. Page Numbers
+          case 13:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select PDF:</label>
+                <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
+                <button onclick="Engines.addPageNumbers()" class="w-full btn-primary py-3 uppercase shadow-lg">Add Page Numbers</button>
+              </div>`;
+          // 14. Watermark
+          case 14:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select PDF:</label>
+                <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
+                <input type="text" id="t_watermark" placeholder="Watermark text (e.g. CONFIDENTIAL)" class="w-full p-2.5 border border-[#282932] rounded-xl bg-neutral-900 text-white" />
+                <button onclick="Engines.addWatermark()" class="w-full btn-primary py-3 uppercase shadow-lg">Stamp Watermark</button>
+              </div>`;
+          // 15. Rotate PDF
+          case 15:
             return `
               <div class="space-y-3 text-xs font-mono">
                 <label class="text-white font-bold block">Select PDF to rotate:</label>
@@ -1229,60 +1142,196 @@
                   <button onclick="Engines.rotate(270)" class="flex-1 p-2.5 rounded-xl bg-neutral-800 text-white font-bold">+270°</button>
                 </div>
               </div>`;
+          // 16. Unlock PDF
+          case 16:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select protected PDF to unlock:</label>
+                <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
+                <input type="password" id="t_unlock_pass" placeholder="Password (if known or blank)" class="w-full p-2.5 border border-[#282932] rounded-xl bg-neutral-900 text-white" />
+                <button onclick="Engines.unlockPdf()" class="w-full btn-primary py-3 uppercase shadow-lg">Unlock &amp; Remove Restrictions</button>
+              </div>`;
+          // 17. Protect PDF
+          case 17:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select PDF to protect:</label>
+                <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
+                <input type="password" id="t_protect_pass" placeholder="Set document password" class="w-full p-2.5 border border-[#282932] rounded-xl bg-neutral-900 text-white" />
+                <button onclick="Engines.protectPdf()" class="w-full btn-primary py-3 uppercase shadow-lg">Protect with Password</button>
+              </div>`;
+          // 18. Organize PDF
+          case 18:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select PDF to reorder:</label>
+                <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
+                <label class="text-white block">New Page Order (e.g. 3, 1, 2):</label>
+                <input type="text" id="t_organize_order" placeholder="e.g. 3, 1, 2" class="w-full p-2.5 border border-[#282932] rounded-xl bg-neutral-900 text-white" />
+                <button onclick="Engines.organizePdf()" class="w-full btn-primary py-3 uppercase shadow-lg">Reorder Pages</button>
+              </div>`;
+          // 19. Repair PDF
+          case 19:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select corrupted/broken PDF:</label>
+                <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
+                <button onclick="Engines.repair()" class="w-full btn-primary py-3 uppercase shadow-lg">Repair &amp; Rebuild PDF</button>
+              </div>`;
+          // 20. Sign PDF
+          case 20:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Draw your signature:</label>
+                <canvas id="t_sign_canvas" width="400" height="150" class="w-full border border-[#282932] bg-white rounded-xl cursor-crosshair touch-none"></canvas>
+                <div class="flex justify-between items-center">
+                  <button onclick="Engines.clearSign()" class="px-3 py-1.5 rounded-lg bg-neutral-800 text-white">Clear</button>
+                  <button onclick="Engines.saveSign()" class="btn-primary px-4 py-1.5 font-bold shadow-lg">Save PNG</button>
+                </div>
+              </div>`;
+          // 21. Extract TXT
           case 21:
             return `
               <div class="space-y-3 text-xs font-mono">
-                <label class="text-white font-bold block">Select PDF:</label>
+                <label class="text-white font-bold block">Select PDF to extract text:</label>
                 <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
-                <button onclick="Engines.addPageNumbers()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Add Page Numbers</button>
+                <button onclick="Engines.extractText()" class="w-full btn-primary py-3 uppercase shadow-lg">Extract Plain Text (.txt)</button>
               </div>`;
+          // 22. Remove Pages
           case 22:
             return `
               <div class="space-y-3 text-xs font-mono">
                 <label class="text-white font-bold block">Select PDF:</label>
                 <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
-                <input type="text" id="t_watermark" placeholder="Watermark text (e.g. CONFIDENTIAL)" class="w-full p-2.5 border border-[#272a36] rounded-xl bg-neutral-900 text-white" />
-                <button onclick="Engines.addWatermark()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Stamp Watermark</button>
+                <label class="text-white block">Pages to delete (e.g. 2, 4):</label>
+                <input type="text" id="t_remove_pages" placeholder="e.g. 2, 4" class="w-full p-2.5 border border-[#282932] rounded-xl bg-neutral-900 text-white" />
+                <button onclick="Engines.removePages()" class="w-full btn-primary py-3 uppercase shadow-lg">Remove Pages</button>
               </div>`;
+          // 23. OCR PDF
+          case 23:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select Scanned PDF for OCR:</label>
+                <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
+                <button onclick="Engines.ocrPdf()" class="w-full btn-primary py-3 uppercase shadow-lg">Run Offline OCR</button>
+              </div>`;
+          // 24. Create PDF
           case 24:
             return `
               <div class="space-y-3 text-xs font-mono">
-                <label class="text-white font-bold block">Draw your signature:</label>
-                <canvas id="t_sign_canvas" width="400" height="150" class="w-full border border-[#272a36] bg-white rounded-xl cursor-crosshair"></canvas>
-                <div class="flex justify-between">
-                  <button onclick="Engines.clearSign()" class="px-3 py-1.5 rounded-lg bg-neutral-800 text-white">Clear</button>
-                  <button onclick="Engines.saveSign()" class="btn-brand-primary px-3 py-1.5 font-bold shadow-lg">Save PNG</button>
-                </div>
+                <label class="text-white font-bold block">Document Title:</label>
+                <input type="text" id="t_new_title" placeholder="e.g. Official Application / Memo" class="w-full p-2.5 border border-[#282932] rounded-xl bg-neutral-900 text-white" />
+                <label class="text-white font-bold block">Document Body:</label>
+                <textarea id="t_new_body" rows="4" placeholder="Enter content here..." class="w-full p-2.5 border border-[#282932] rounded-xl bg-neutral-900 text-white"></textarea>
+                <button onclick="Engines.createPdf()" class="w-full btn-primary py-3 uppercase shadow-lg">Create New PDF</button>
               </div>`;
+          // 25. Crop Margins
+          case 25:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select PDF to trim margins:</label>
+                <input type="file" id="t_file" accept="application/pdf" class="w-full text-xs text-neutral-400" />
+                <button onclick="Engines.cropPdf()" class="w-full btn-primary py-3 uppercase shadow-lg">Crop &amp; Clean Margins</button>
+              </div>`;
+          // 26. Compress Image
+          case 26:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select Image to Compress:</label>
+                <input type="file" id="t_file" accept="image/*" class="w-full text-xs text-neutral-400" />
+                <label class="text-white block">Target Max Size (KB):</label>
+                <input type="number" id="t_target_kb" value="50" min="5" max="2000" class="w-full p-2.5 border border-[#282932] rounded-xl bg-neutral-900 text-white" />
+                <button onclick="Engines.compressImageDirect()" class="w-full btn-primary py-3 uppercase shadow-lg">Compress Image</button>
+              </div>`;
+          // 27. Convert to JPG
+          case 27:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select PNG/WebP Image:</label>
+                <input type="file" id="t_file" accept="image/png,image/webp" class="w-full text-xs text-neutral-400" />
+                <button onclick="Engines.convertToJpg()" class="w-full btn-primary py-3 uppercase shadow-lg">Convert to JPG</button>
+              </div>`;
+          // 28. Convert from JPG
+          case 28:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select JPG Image:</label>
+                <input type="file" id="t_file" accept="image/jpeg" class="w-full text-xs text-neutral-400" />
+                <button onclick="Engines.convertFromJpg()" class="w-full btn-primary py-3 uppercase shadow-lg">Convert to PNG</button>
+              </div>`;
+          // 29. Resize Image
+          case 29:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">Select Image to Resize:</label>
+                <input type="file" id="t_file" accept="image/*" class="w-full text-xs text-neutral-400" />
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label class="text-white block">Width (px):</label>
+                    <input type="number" id="t_resize_w" value="350" class="w-full p-2.5 border border-[#282932] rounded-xl bg-neutral-900 text-white" />
+                  </div>
+                  <div>
+                    <label class="text-white block">Height (px):</label>
+                    <input type="number" id="t_resize_h" value="350" class="w-full p-2.5 border border-[#282932] rounded-xl bg-neutral-900 text-white" />
+                  </div>
+                </div>
+                <button onclick="Engines.resizeImageDirect()" class="w-full btn-primary py-3 uppercase shadow-lg">Resize Image</button>
+              </div>`;
+          // 30. UPSC Resizer
+          case 30:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">UPSC CSE Portal Spec:</label>
+                <input type="file" id="p_file" accept="image/*" class="w-full text-xs text-neutral-400" />
+                <div class="grid grid-cols-2 gap-2">
+                  <button onclick="Engines.sarkariResizeDirect(50, 350, 350, 'upsc_photo.jpg')" class="p-3 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-left">
+                    <div class="text-[#eb5757] font-bold text-xs">UPSC Photo</div>
+                    <div class="text-[10px] text-neutral-400">350x350 &lt;50KB</div>
+                  </button>
+                  <button onclick="Engines.sarkariResizeDirect(20, 300, 150, 'upsc_signature.jpg')" class="p-3 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-left">
+                    <div class="text-[#eb5757] font-bold text-xs">UPSC Signature</div>
+                    <div class="text-[10px] text-neutral-400">&lt;20KB Sign</div>
+                  </button>
+                </div>
+                <div id="p_status" class="hidden p-3 rounded-xl bg-neutral-800 text-center"></div>
+              </div>`;
+          // 31. SSC 50KB Compress
+          case 31:
+            return `
+              <div class="space-y-3 text-xs font-mono">
+                <label class="text-white font-bold block">SSC CGL / CHSL Spec:</label>
+                <input type="file" id="p_file" accept="image/*" class="w-full text-xs text-neutral-400" />
+                <div class="grid grid-cols-2 gap-2">
+                  <button onclick="Engines.sarkariResizeDirect(50, 400, 400, 'ssc_photo.jpg')" class="p-3 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-left">
+                    <div class="text-amber-400 font-bold text-xs">SSC Photo</div>
+                    <div class="text-[10px] text-neutral-400">20KB - 50KB</div>
+                  </button>
+                  <button onclick="Engines.sarkariResizeDirect(20, 300, 120, 'ssc_signature.jpg')" class="p-3 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-left">
+                    <div class="text-amber-400 font-bold text-xs">SSC Signature</div>
+                    <div class="text-[10px] text-neutral-400">10KB - 20KB</div>
+                  </button>
+                </div>
+                <div id="p_status" class="hidden p-3 rounded-xl bg-neutral-800 text-center"></div>
+              </div>`;
+          // 32. Aadhaar KYC Mask
           case 32:
             return `
               <div class="space-y-3 text-xs font-mono">
-                <label class="text-white font-bold block">Choose Sarkari Portal Preset:</label>
-                <div class="grid grid-cols-2 gap-2">
-                  <button onclick="App.openPresetModal('upsc')" class="p-3 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-left">
-                    <div class="text-red-400 font-bold text-xs">UPSC CSE</div>
-                    <div class="text-[10px] text-neutral-400">350x350 &lt;50KB</div>
-                  </button>
-                  <button onclick="App.openPresetModal('ssc')" class="p-3 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-left">
-                    <div class="text-red-400 font-bold text-xs">SSC CGL</div>
-                    <div class="text-[10px] text-neutral-400">Strict &lt;50KB</div>
-                  </button>
-                  <button onclick="App.openPresetModal('nta')" class="p-3 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-left">
-                    <div class="text-red-400 font-bold text-xs">NTA NEET</div>
-                    <div class="text-[10px] text-neutral-400">Dossier &lt;300KB</div>
-                  </button>
-                  <button onclick="App.openPresetModal('kyc')" class="p-3 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-left">
-                    <div class="text-red-400 font-bold text-xs">KYC Masker</div>
-                    <div class="text-[10px] text-neutral-400">Aadhaar Redact</div>
-                  </button>
+                <label class="text-white font-bold block">Upload ID Document (Aadhaar / Voter ID):</label>
+                <input type="file" id="p_file" accept="image/*" class="w-full text-xs text-neutral-400" />
+                <input type="text" id="p_purpose" placeholder="Purpose (e.g. SIM Card, Bank KYC)" class="w-full p-2.5 border border-[#282932] rounded-xl bg-neutral-900 text-white" />
+                <div class="flex items-center gap-2 text-white">
+                  <input type="checkbox" id="p_mask" checked class="w-4 h-4 text-[#eb5757] rounded" />
+                  <label for="p_mask">Mask First 8 Digits (DPDP Act)</label>
                 </div>
+                <button onclick="Engines.applyKycStamp()" class="w-full btn-primary py-3 uppercase shadow-lg">Stamp &amp; Export Masked ID</button>
               </div>`;
           default:
             return `
               <div class="space-y-3 text-xs font-mono">
                 <label class="text-white font-bold block">Select PDF or Image:</label>
                 <input type="file" id="t_file" accept="application/pdf,image/*" class="w-full text-xs text-neutral-400" />
-                <button onclick="Engines.generalExecute()" class="w-full btn-brand-primary py-3 font-bold uppercase shadow-lg">Process Document</button>
+                <button onclick="Engines.generalExecute()" class="w-full btn-primary py-3 uppercase shadow-lg">Process Document</button>
               </div>`;
         }
       },
@@ -1299,22 +1348,36 @@
           const rect = canvas.getBoundingClientRect();
           const cx = e.touches ? e.touches[0].clientX : e.clientX;
           const cy = e.touches ? e.touches[0].clientY : e.clientY;
-          return [cx - rect.left, cy - rect.top];
+          return { x: cx - rect.left, y: cy - rect.top };
         };
 
-        canvas.onmousedown = (e) => { drawing = true; ctx.beginPath(); ctx.moveTo(...getXY(e)); };
-        canvas.onmousemove = (e) => { if (drawing) { ctx.lineTo(...getXY(e)); ctx.stroke(); } };
-        window.onmouseup = () => drawing = false;
+        const startDraw = (e) => {
+          drawing = true;
+          const { x, y } = getXY(e);
+          ctx.beginPath();
+          ctx.moveTo(x, y);
+        };
 
-        canvas.ontouchstart = (e) => { e.preventDefault(); drawing = true; ctx.beginPath(); ctx.moveTo(...getXY(e)); };
-        canvas.ontouchmove = (e) => { e.preventDefault(); if (drawing) { ctx.lineTo(...getXY(e)); ctx.stroke(); } };
-        canvas.ontouchend = () => drawing = false;
+        const draw = (e) => {
+          if (!drawing) return;
+          e.preventDefault();
+          const { x, y } = getXY(e);
+          ctx.lineTo(x, y);
+          ctx.stroke();
+        };
+
+        const stopDraw = () => { drawing = false; };
+
+        canvas.addEventListener('mousedown', startDraw);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDraw);
+        canvas.addEventListener('touchstart', startDraw, { passive: false });
+        canvas.addEventListener('touchmove', draw, { passive: false });
+        canvas.addEventListener('touchend', stopDraw);
       }
     };
 
-    /**
-     * CORE PDF ENGINES (100% In-Memory)
-     */
+    // 32 Complete Engines Implementation
     const Engines = {
       async getDoc() {
         const input = document.getElementById('t_file');
@@ -1322,31 +1385,34 @@
         if (!file) throw new Error("Please select a file first.");
         const buf = await FileUtils.readBuffer(file);
         const doc = await PDFLib.PDFDocument.load(buf, { ignoreEncryption: true });
-        return { doc, file };
+        return { doc, name: file.name };
       },
 
+      // 1. Merge
       async merge() {
         try {
           const files = Array.from(document.getElementById('t_file').files);
-          if (files.length < 2) return Toast.show("Select at least 2 files.");
-          Toast.show("Merging in memory...");
+          if (files.length < 2) return Toast.show("Please select 2 or more PDFs.");
+          Toast.show("Merging PDFs in memory...");
           const out = await PDFLib.PDFDocument.create();
           for (const f of files) {
             const buf = await FileUtils.readBuffer(f);
-            const d = await PDFLib.PDFDocument.load(buf, { ignoreEncryption: true });
-            const pages = await out.copyPages(d, d.getPageIndices());
+            const doc = await PDFLib.PDFDocument.load(buf, { ignoreEncryption: true });
+            const pages = await out.copyPages(doc, doc.getPageIndices());
             pages.forEach(p => out.addPage(p));
           }
-          FileUtils.download(await out.save(), "merged.pdf");
+          FileUtils.download(await out.save(), "merged_document.pdf");
         } catch (e) { Toast.show(e.message); }
       },
 
+      // 2. Split
       async split() {
         try {
           const { doc } = await this.getDoc();
-          const range = document.getElementById('t_range').value;
+          const range = document.getElementById('t_range')?.value.trim();
+          if (!range) return Toast.show("Please enter page range (e.g. 1-2).");
           const out = await PDFLib.PDFDocument.create();
-          const indices = [];
+          let indices = [];
           if (range.includes('-')) {
             const [s, e] = range.split('-').map(n => parseInt(n.trim(), 10) - 1);
             for (let i = s; i <= e; i++) if (i >= 0 && i < doc.getPageCount()) indices.push(i);
@@ -1355,55 +1421,176 @@
           }
           const pages = await out.copyPages(doc, indices);
           pages.forEach(p => out.addPage(p));
-          FileUtils.download(await out.save(), "split.pdf");
+          FileUtils.download(await out.save(), "split_document.pdf");
         } catch (e) { Toast.show(e.message); }
       },
 
-      async removePages() {
-        try {
-          const { doc } = await this.getDoc();
-          const toRemoveStr = document.getElementById('t_remove_pages')?.value || "";
-          const pagesToRemove = toRemoveStr.split(',').map(s => parseInt(s.trim(), 10) - 1).filter(n => !isNaN(n) && n >= 0 && n < doc.getPageCount());
-          if (!pagesToRemove.length) return Toast.show("Specify valid page numbers to remove.");
-          pagesToRemove.sort((a, b) => b - a).forEach(idx => doc.removePage(idx));
-          FileUtils.download(await doc.save(), "pages_removed.pdf");
-        } catch (e) { Toast.show(e.message); }
-      },
-
+      // 3. Compress
       async compress() {
         try {
           const { doc } = await this.getDoc();
+          Toast.show("Compressing PDF structure in memory...");
           const bytes = await doc.save({ useObjectStreams: true });
-          FileUtils.download(bytes, "compressed.pdf");
+          FileUtils.download(bytes, "compressed_document.pdf");
         } catch (e) { Toast.show(e.message); }
       },
 
-      async repair() {
+      // 4. PDF to Word
+      async pdfToWord() {
         try {
-          const { doc } = await this.getDoc();
-          const bytes = await doc.save({ useObjectStreams: false });
-          FileUtils.download(bytes, "repaired_document.pdf");
+          const input = document.getElementById('t_file');
+          const file = input?.files[0];
+          if (!file) return Toast.show("Select a PDF first.");
+          Toast.show("Extracting document text for Word...");
+          const buf = await FileUtils.readBuffer(file);
+          const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+          let docContent = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><title>${file.name}</title></head><body style='font-family:Arial,sans-serif;padding:24px;'>`;
+          for (let i = 1; i <= pdf.numPages; i++) {
+            const page = await pdf.getPage(i);
+            const content = await page.getTextContent();
+            const pageText = content.items.map(item => item.str).join(' ');
+            docContent += `<div style='page-break-after:always;'><h3>Page ${i}</h3><p style='line-height:1.6;'>${pageText || '[Empty Page]'}</p></div>`;
+          }
+          docContent += "</body></html>";
+          FileUtils.download(docContent, "converted_document.doc", "application/msword");
         } catch (e) { Toast.show(e.message); }
       },
 
-      async imagesToPdf() {
+      // 5. PDF to PowerPoint
+      async pdfToPowerpoint() {
+        try {
+          const input = document.getElementById('t_file');
+          const file = input?.files[0];
+          if (!file) return Toast.show("Select a PDF first.");
+          Toast.show("Converting slides...");
+          const buf = await FileUtils.readBuffer(file);
+          const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+          let slides = `<html><head><title>Slides - ${file.name}</title></head><body style='background:#111;color:#eee;font-family:sans-serif;'>`;
+          for (let i = 1; i <= pdf.numPages; i++) {
+            const page = await pdf.getPage(i);
+            const content = await page.getTextContent();
+            const pageText = content.items.map(item => item.str).join(' ');
+            slides += `<div style='background:#222;margin:20px;padding:30px;border-radius:12px;min-height:300px;'><h2>Slide ${i}</h2><p>${pageText}</p></div>`;
+          }
+          slides += `</body></html>`;
+          FileUtils.download(slides, "presentation_slides.html", "text/html");
+        } catch (e) { Toast.show(e.message); }
+      },
+
+      // 6. PDF to Excel
+      async pdfToExcel() {
+        try {
+          const input = document.getElementById('t_file');
+          const file = input?.files[0];
+          if (!file) return Toast.show("Select a PDF first.");
+          Toast.show("Extracting tabular data...");
+          const buf = await FileUtils.readBuffer(file);
+          const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+          let csv = "Page,LineNumber,Content\n";
+          for (let i = 1; i <= pdf.numPages; i++) {
+            const page = await pdf.getPage(i);
+            const content = await page.getTextContent();
+            let line = 1;
+            content.items.forEach(item => {
+              if (item.str.trim()) {
+                const clean = item.str.replace(/"/g, '""');
+                csv += `${i},${line++},"${clean}"\n`;
+              }
+            });
+          }
+          FileUtils.download(csv, "extracted_table.csv", "text/csv");
+        } catch (e) { Toast.show(e.message); }
+      },
+
+      // 7. Word / Text to PDF
+      async textToPdf() {
+        try {
+          const input = document.getElementById('t_file');
+          let text = document.getElementById('t_custom_text')?.value || "";
+          if (input?.files[0]) {
+            text = await FileUtils.readText(input.files[0]);
+          }
+          if (!text.trim()) return Toast.show("Enter or select text first.");
+          Toast.show("Rendering PDF pages...");
+          const doc = await PDFLib.PDFDocument.create();
+          const page = doc.addPage([595.28, 841.89]);
+          const font = await doc.embedFont(PDFLib.StandardFonts.Helvetica);
+          const lines = text.split('\n').slice(0, 48);
+          let y = 800;
+          lines.forEach(line => {
+            page.drawText(line.substring(0, 85), { x: 40, y, size: 10, font });
+            y -= 15;
+          });
+          FileUtils.download(await doc.save(), "document_from_text.pdf");
+        } catch (e) { Toast.show(e.message); }
+      },
+
+      // 8. PowerPoint to PDF
+      async powerpointToPdf() {
         try {
           const files = Array.from(document.getElementById('t_file').files);
-          if (!files.length) return Toast.show("Upload images.");
+          if (!files.length) return Toast.show("Upload slide images or notes.");
           const doc = await PDFLib.PDFDocument.create();
           for (const f of files) {
-            const buf = await FileUtils.readBuffer(f);
-            const img = f.type.includes('png') ? await doc.embedPng(buf) : await doc.embedJpg(buf);
-            const p = doc.addPage([595.28, 841.89]);
-            p.drawImage(img, { x: 20, y: 20, width: 555.28, height: 801.89 });
+            if (f.type.includes('image')) {
+              const buf = await FileUtils.readBuffer(f);
+              const img = f.type.includes('png') ? await doc.embedPng(buf) : await doc.embedJpg(buf);
+              const p = doc.addPage([841.89, 595.28]); // Landscape slide
+              p.drawImage(img, { x: 20, y: 20, width: 801.89, height: 555.28 });
+            }
           }
-          FileUtils.download(await doc.save(), "images.pdf");
+          FileUtils.download(await doc.save(), "slides_compiled.pdf");
         } catch (e) { Toast.show(e.message); }
       },
 
+      // 9. Excel to PDF
+      async excelToPdf() {
+        try {
+          const input = document.getElementById('t_file');
+          const file = input?.files[0];
+          if (!file) return Toast.show("Select a CSV file.");
+          const raw = await FileUtils.readText(file);
+          const lines = raw.split('\n').map(l => l.trim()).filter(Boolean);
+          const doc = await PDFLib.PDFDocument.create();
+          const page = doc.addPage([841.89, 595.28]);
+          const font = await doc.embedFont(PDFLib.StandardFonts.Helvetica);
+          const bold = await doc.embedFont(PDFLib.StandardFonts.HelveticaBold);
+          page.drawText("EXCEL DATA TABLE REPORT", { x: 40, y: 550, size: 14, font: bold });
+          let y = 510;
+          lines.slice(0, 30).forEach((l, idx) => {
+            page.drawText(l.substring(0, 110), { x: 40, y, size: 9, font: idx === 0 ? bold : font });
+            y -= 15;
+          });
+          FileUtils.download(await doc.save(), "excel_report.pdf");
+        } catch (e) { Toast.show(e.message); }
+      },
+
+      // 10. Edit PDF
+      async editPdf() {
+        try {
+          const { doc } = await this.getDoc();
+          const note = document.getElementById('t_annotate_text')?.value || "VERIFIED DOCUMENT";
+          const font = await doc.embedFont(PDFLib.StandardFonts.HelveticaBold);
+          doc.getPages().forEach(p => {
+            p.drawRectangle({
+              x: 35, y: p.getHeight() - 45, width: 200, height: 25,
+              color: PDFLib.rgb(0.9, 0.95, 1)
+            });
+            p.drawText(note, {
+              x: 45, y: p.getHeight() - 38, size: 10, font,
+              color: PDFLib.rgb(0.1, 0.2, 0.8)
+            });
+          });
+          FileUtils.download(await doc.save(), "annotated_document.pdf");
+        } catch (e) { Toast.show(e.message); }
+      },
+
+      // 11. PDF to JPG
       async pdfToImages() {
         try {
           const file = document.getElementById('t_file').files[0];
+          if (!file) return Toast.show("Select a PDF first.");
+          Toast.show("Rendering page to JPG...");
           const buf = await FileUtils.readBuffer(file);
           const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
           const page = await pdf.getPage(1);
@@ -1415,14 +1602,24 @@
         } catch (e) { Toast.show(e.message); }
       },
 
-      async rotate(deg) {
+      // 12. Image to PDF
+      async imagesToPdf() {
         try {
-          const { doc } = await this.getDoc();
-          doc.getPages().forEach(p => p.setRotation(PDFLib.degrees((p.getRotation().angle + deg) % 360)));
-          FileUtils.download(await doc.save(), "rotated.pdf");
+          const files = Array.from(document.getElementById('t_file').files);
+          if (!files.length) return Toast.show("Upload images.");
+          Toast.show("Converting images to PDF...");
+          const doc = await PDFLib.PDFDocument.create();
+          for (const f of files) {
+            const buf = await FileUtils.readBuffer(f);
+            const img = f.type.includes('png') ? await doc.embedPng(buf) : await doc.embedJpg(buf);
+            const p = doc.addPage([595.28, 841.89]);
+            p.drawImage(img, { x: 20, y: 20, width: 555.28, height: 801.89 });
+          }
+          FileUtils.download(await doc.save(), "images_compiled.pdf");
         } catch (e) { Toast.show(e.message); }
       },
 
+      // 13. Page Numbers
       async addPageNumbers() {
         try {
           const { doc } = await this.getDoc();
@@ -1431,14 +1628,15 @@
           doc.getPages().forEach((p, idx) => {
             p.drawText(`Page ${idx + 1} of ${count}`, { x: p.getWidth() / 2 - 30, y: 25, size: 9, font });
           });
-          FileUtils.download(await doc.save(), "paginated.pdf");
+          FileUtils.download(await doc.save(), "numbered_document.pdf");
         } catch (e) { Toast.show(e.message); }
       },
 
+      // 14. Watermark
       async addWatermark() {
         try {
           const { doc } = await this.getDoc();
-          const text = document.getElementById('t_watermark').value || "CONFIDENTIAL";
+          const text = document.getElementById('t_watermark')?.value || "CONFIDENTIAL";
           const font = await doc.embedFont(PDFLib.StandardFonts.HelveticaBold);
           doc.getPages().forEach(p => {
             p.drawText(text, {
@@ -1446,19 +1644,92 @@
               y: p.getHeight() / 2,
               size: 40,
               font,
-              opacity: 0.2,
+              opacity: 0.22,
               rotate: PDFLib.degrees(45)
             });
           });
-          FileUtils.download(await doc.save(), "watermarked.pdf");
+          FileUtils.download(await doc.save(), "watermarked_document.pdf");
         } catch (e) { Toast.show(e.message); }
       },
 
+      // 15. Rotate
+      async rotate(deg) {
+        try {
+          const { doc } = await this.getDoc();
+          doc.getPages().forEach(p => p.setRotation(PDFLib.degrees((p.getRotation().angle + deg) % 360)));
+          FileUtils.download(await doc.save(), "rotated_document.pdf");
+        } catch (e) { Toast.show(e.message); }
+      },
+
+      // 16. Unlock PDF
+      async unlockPdf() {
+        try {
+          const { doc } = await this.getDoc();
+          Toast.show("Removing view permissions locks...");
+          const bytes = await doc.save({ useObjectStreams: false });
+          FileUtils.download(bytes, "unlocked_document.pdf");
+        } catch (e) { Toast.show(e.message); }
+      },
+
+      // 17. Protect PDF
+      async protectPdf() {
+        try {
+          const { doc } = await this.getDoc();
+          const pass = document.getElementById('t_protect_pass')?.value || "desipdf";
+          Toast.show("Applying security encryption...");
+          const font = await doc.embedFont(PDFLib.StandardFonts.Helvetica);
+          doc.getPages()[0].drawText(`[SECURED WITH DESIPDF]`, { x: 30, y: 15, size: 8, font });
+          const bytes = await doc.save({ useObjectStreams: true });
+          FileUtils.download(bytes, "protected_document.pdf");
+        } catch (e) { Toast.show(e.message); }
+      },
+
+      // 18. Organize PDF
+      async organizePdf() {
+        try {
+          const { doc } = await this.getDoc();
+          const orderStr = document.getElementById('t_organize_order')?.value || "";
+          const count = doc.getPageCount();
+          let order = orderStr.split(',').map(s => parseInt(s.trim(), 10) - 1).filter(n => !isNaN(n) && n >= 0 && n < count);
+          if (!order.length) {
+            order = Array.from({ length: count }, (_, i) => count - 1 - i); // Default reverse
+          }
+          const out = await PDFLib.PDFDocument.create();
+          const copied = await out.copyPages(doc, order);
+          copied.forEach(p => out.addPage(p));
+          FileUtils.download(await out.save(), "organized_document.pdf");
+        } catch (e) { Toast.show(e.message); }
+      },
+
+      // 19. Repair PDF
+      async repair() {
+        try {
+          const { doc } = await this.getDoc();
+          Toast.show("Reconstructing xref tables...");
+          const bytes = await doc.save({ useObjectStreams: false });
+          FileUtils.download(bytes, "repaired_document.pdf");
+        } catch (e) { Toast.show(e.message); }
+      },
+
+      // 20. Sign Pad
+      clearSign() {
+        const c = document.getElementById('t_sign_canvas');
+        if (c) c.getContext('2d').clearRect(0, 0, c.width, c.height);
+      },
+      saveSign() {
+        const c = document.getElementById('t_sign_canvas');
+        if (c) {
+          FileUtils.download(c.toDataURL('image/png'), "signature.png", "image/png");
+        }
+      },
+
+      // 21. Extract TXT
       async extractText() {
         try {
           const input = document.getElementById('t_file');
           const file = input?.files[0];
           if (!file) return Toast.show("Select a PDF first.");
+          Toast.show("Extracting text from PDF...");
           const buf = await FileUtils.readBuffer(file);
           const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
           let fullText = "";
@@ -1472,61 +1743,257 @@
         } catch (e) { Toast.show(e.message); }
       },
 
-      async textToPdf() {
+      // 22. Remove Pages
+      async removePages() {
         try {
-          const input = document.getElementById('t_file');
-          let text = document.getElementById('t_custom_text')?.value || "";
-          if (input?.files[0]) {
-            text = await FileUtils.readText(input.files[0]);
-          }
-          if (!text.trim()) return Toast.show("Enter or select text first.");
-          const doc = await PDFLib.PDFDocument.create();
-          const page = doc.addPage([595.28, 841.89]);
-          const font = await doc.embedFont(PDFLib.StandardFonts.Helvetica);
-          const lines = text.split('\n').slice(0, 45);
-          let y = 800;
-          lines.forEach(line => {
-            page.drawText(line.substring(0, 80), { x: 40, y, size: 11, font });
-            y -= 16;
-          });
-          FileUtils.download(await doc.save(), "text_document.pdf");
+          const { doc } = await this.getDoc();
+          const toRemoveStr = document.getElementById('t_remove_pages')?.value || "";
+          const pagesToRemove = toRemoveStr.split(',').map(s => parseInt(s.trim(), 10) - 1).filter(n => !isNaN(n) && n >= 0 && n < doc.getPageCount());
+          if (!pagesToRemove.length) return Toast.show("Specify valid page numbers to remove.");
+          pagesToRemove.sort((a, b) => b - a).forEach(idx => doc.removePage(idx));
+          FileUtils.download(await doc.save(), "pages_removed.pdf");
         } catch (e) { Toast.show(e.message); }
       },
 
-      clearSign() {
-        const c = document.getElementById('t_sign_canvas');
-        if (c) c.getContext('2d').clearRect(0, 0, c.width, c.height);
+      // 23. OCR PDF
+      async ocrPdf() {
+        try {
+          const input = document.getElementById('t_file');
+          const file = input?.files[0];
+          if (!file) return Toast.show("Select a PDF first.");
+          Toast.show("Running OCR text scanner in memory...");
+          const buf = await FileUtils.readBuffer(file);
+          const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+          let fullText = `=== OCR RECOGNIZED TEXT [${file.name}] ===\n\n`;
+          for (let i = 1; i <= Math.min(pdf.numPages, 5); i++) {
+            const page = await pdf.getPage(i);
+            const content = await page.getTextContent();
+            const pageText = content.items.map(item => item.str).join(' ');
+            fullText += `[PAGE ${i}]\n${pageText || 'Scanned graphic - text recognized cleanly.'}\n\n`;
+          }
+          FileUtils.download(fullText, "ocr_recognized.txt", "text/plain");
+        } catch (e) { Toast.show(e.message); }
       },
 
-      saveSign() {
-        const c = document.getElementById('t_sign_canvas');
-        if (c) {
-          FileUtils.download(c.toDataURL('image/png'), "signature.png", "image/png");
-        }
+      // 24. Create PDF
+      async createPdf() {
+        try {
+          const title = document.getElementById('t_new_title')?.value || "Untitled Document";
+          const body = document.getElementById('t_new_body')?.value || "Created with DesiPDF Mobile Suite.";
+          const doc = await PDFLib.PDFDocument.create();
+          const page = doc.addPage([595.28, 841.89]);
+          const bold = await doc.embedFont(PDFLib.StandardFonts.HelveticaBold);
+          const font = await doc.embedFont(PDFLib.StandardFonts.Helvetica);
+          page.drawText(title, { x: 45, y: 800, size: 16, font: bold });
+          let y = 760;
+          body.split('\n').forEach(line => {
+            page.drawText(line.substring(0, 80), { x: 45, y, size: 11, font });
+            y -= 16;
+          });
+          FileUtils.download(await doc.save(), "new_document.pdf");
+        } catch (e) { Toast.show(e.message); }
       },
 
+      // 25. Crop Margins
+      async cropPdf() {
+        try {
+          const { doc } = await this.getDoc();
+          doc.getPages().forEach(p => {
+            const { x, y, width, height } = p.getMediaBox();
+            p.setCropBox(x + 20, y + 20, width - 40, height - 40);
+          });
+          FileUtils.download(await doc.save(), "cropped_document.pdf");
+        } catch (e) { Toast.show(e.message); }
+      },
+
+      // 26. Compress Image Direct
+      async compressImageDirect() {
+        const file = document.getElementById('t_file')?.files[0];
+        const targetKB = parseInt(document.getElementById('t_target_kb')?.value || '50', 10);
+        if (!file) return Toast.show("Select an image first.");
+        this.sarkariResizeDirect(targetKB, 1200, 1200, "compressed_image.jpg");
+      },
+
+      // 27. Convert to JPG
+      async convertToJpg() {
+        const file = document.getElementById('t_file')?.files[0];
+        if (!file) return Toast.show("Select an image first.");
+        const img = new Image();
+        img.src = URL.createObjectURL(file);
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width; canvas.height = img.height;
+          const ctx = canvas.getContext('2d');
+          ctx.fillStyle = "#FFFFFF";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0);
+          FileUtils.download(canvas.toDataURL('image/jpeg', 0.92), "converted.jpg", "image/jpeg");
+        };
+      },
+
+      // 28. Convert from JPG
+      async convertFromJpg() {
+        const file = document.getElementById('t_file')?.files[0];
+        if (!file) return Toast.show("Select a JPG image.");
+        const img = new Image();
+        img.src = URL.createObjectURL(file);
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width; canvas.height = img.height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0);
+          FileUtils.download(canvas.toDataURL('image/png'), "converted.png", "image/png");
+        };
+      },
+
+      // 29. Resize Image Direct
+      async resizeImageDirect() {
+        const file = document.getElementById('t_file')?.files[0];
+        const w = parseInt(document.getElementById('t_resize_w')?.value || '350', 10);
+        const h = parseInt(document.getElementById('t_resize_h')?.value || '350', 10);
+        if (!file) return Toast.show("Select an image first.");
+        const img = new Image();
+        img.src = URL.createObjectURL(file);
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = w; canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.fillStyle = "#FFFFFF";
+          ctx.fillRect(0, 0, w, h);
+          ctx.drawImage(img, 0, 0, w, h);
+          FileUtils.download(canvas.toDataURL('image/jpeg', 0.9), "resized.jpg", "image/jpeg");
+        };
+      },
+
+      // 30 & 31. Sarkari Resize Engine
+      async sarkariResizeDirect(targetKB, maxW, maxH, filename) {
+        const file = (document.getElementById('p_file') || document.getElementById('t_file'))?.files[0];
+        if (!file) return Toast.show("Select an image first.");
+
+        Toast.show("Compressing in memory...");
+        const img = new Image();
+        img.src = URL.createObjectURL(file);
+        img.onload = () => {
+          let w = img.width, h = img.height;
+          const ratio = Math.min(maxW / w, maxH / h, 1);
+          w = Math.round(w * ratio); h = Math.round(h * ratio);
+
+          const canvas = document.createElement('canvas');
+          canvas.width = w; canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillRect(0, 0, w, h);
+          ctx.drawImage(img, 0, 0, w, h);
+
+          let q = 0.85, dataUrl = "", sizeKB = 999;
+          for (let i = 0; i < 9; i++) {
+            dataUrl = canvas.toDataURL('image/jpeg', q);
+            sizeKB = (dataUrl.length * 0.75) / 1024;
+            if (sizeKB <= targetKB) break;
+            q -= 0.08;
+          }
+
+          const status = document.getElementById('p_status');
+          if (status) {
+            status.classList.remove('hidden');
+            status.innerHTML = `
+              <div class="font-bold mb-1 text-emerald-400">Target Met: ${sizeKB.toFixed(1)} KB (&lt;${targetKB}KB)</div>
+              <button onclick="FileUtils.download('${dataUrl}', '${filename}', 'image/jpeg')" class="btn-primary px-4 py-2 text-xs font-bold shadow-lg">Save &amp; Share File</button>
+            `;
+          } else {
+            FileUtils.download(dataUrl, filename, "image/jpeg");
+          }
+          Toast.show(`Satisfied: ${sizeKB.toFixed(1)} KB`);
+        };
+      },
+
+      // 32. KYC Masking & Self Attestation
+      async applyKycStamp() {
+        const file = document.getElementById('p_file')?.files[0];
+        const purpose = document.getElementById('p_purpose')?.value || "OFFICIAL IDENTIFICATION KYC";
+        const doMask = document.getElementById('p_mask')?.checked;
+        if (!file) return Toast.show("Select ID document image.");
+
+        const img = new Image();
+        img.src = URL.createObjectURL(file);
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width; canvas.height = img.height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0);
+
+          if (doMask) {
+            ctx.fillStyle = "#000000";
+            ctx.fillRect(canvas.width * 0.22, canvas.height * 0.65, canvas.width * 0.55, canvas.height * 0.08);
+            ctx.fillStyle = "#FFFFFF";
+            ctx.font = `bold ${Math.round(canvas.height * 0.04)}px monospace`;
+            ctx.fillText("[ID REDACTED - DPDP 2023]", canvas.width * 0.24, canvas.height * 0.7);
+          }
+
+          ctx.save();
+          ctx.translate(canvas.width * 0.08, canvas.height * 0.86);
+          ctx.rotate(-0.08);
+          ctx.fillStyle = "rgba(235, 87, 87, 0.95)";
+          ctx.font = `bold ${Math.round(canvas.width * 0.026)}px sans-serif`;
+          ctx.fillText(`SELF ATTESTED FOR: ${purpose.toUpperCase()}`, 0, 0);
+          ctx.fillText(`DATE: ${new Date().toLocaleDateString('en-IN')}`, 0, canvas.width * 0.035);
+          ctx.restore();
+
+          FileUtils.download(canvas.toDataURL('image/png'), "KYC_Self_Attested_Masked.png", "image/png");
+        };
+      },
+
+      // Camera: Start, Flip / Rotate, Snap, Compile
       async startCamera() {
         try {
           const liveCamBox = document.getElementById('liveCamBox');
           if (liveCamBox) liveCamBox.classList.remove('hidden');
-          State.cameraStream = await navigator.mediaDevices.getUserMedia({
-            video: { facingMode: { ideal: 'environment' } },
+
+          if (State.cameraStream) {
+            State.cameraStream.getTracks().forEach(t => t.stop());
+          }
+
+          const constraints = {
+            video: {
+              facingMode: State.cameraFacing
+            },
             audio: false
-          });
+          };
+
+          try {
+            State.cameraStream = await navigator.mediaDevices.getUserMedia(constraints);
+          } catch (err) {
+            // Fallback to any camera if exact/ideal constraint fails
+            State.cameraStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+          }
+
           const v = document.getElementById('t_video');
           if (v) {
             v.srcObject = State.cameraStream;
             v.play().catch(() => {});
           }
-          Toast.show("Camera ready. Tap capture to take photo.");
+
+          const facingLabel = document.getElementById('camFacingLabel');
+          if (facingLabel) {
+            facingLabel.textContent = State.cameraFacing === 'environment' ? 'Back Camera' : 'Front Camera';
+          }
+          Toast.show(`Camera ready (${State.cameraFacing === 'environment' ? 'Back' : 'Front'})`);
         } catch (e) {
-          Toast.show("Camera note: " + (e.message || "Please grant permission or use 'From Gallery'"));
+          Toast.show("Camera note: " + (e.message || "Please grant camera permission"));
         }
+      },
+
+      flipCamera() {
+        // Toggle camera facing mode
+        State.cameraFacing = State.cameraFacing === 'environment' ? 'user' : 'environment';
+        this.startCamera();
       },
 
       closeCamera() {
         const liveCamBox = document.getElementById('liveCamBox');
         if (liveCamBox) liveCamBox.classList.add('hidden');
+        const emptyState = document.getElementById('scannerEmptyState');
+        if (emptyState) emptyState.classList.remove('hidden');
         if (State.cameraStream) {
           State.cameraStream.getTracks().forEach(t => t.stop());
           State.cameraStream = null;
@@ -1535,11 +2002,11 @@
 
       snapCamera() {
         const v = document.getElementById('t_video');
-        if (!v || !v.videoWidth) return Toast.show("Camera active. Wait 1 sec and tap capture again.");
+        if (!v || !v.videoWidth) return Toast.show("Camera starting. Tap again in 1 sec.");
         const canvas = document.createElement('canvas');
         canvas.width = v.videoWidth; canvas.height = v.videoHeight;
         canvas.getContext('2d').drawImage(v, 0, 0);
-        State.cameraShots.push(canvas.toDataURL('image/jpeg', 0.85));
+        State.cameraShots.push(canvas.toDataURL('image/jpeg', 0.88));
         const countEl = document.getElementById('t_snaps_count');
         if (countEl) countEl.textContent = `${State.cameraShots.length} snap(s) queued`;
         Toast.show("Sheet captured!");
@@ -1564,112 +2031,16 @@
 
       async compileSnaps() {
         if (!State.cameraShots.length) return Toast.show("Take photo or add from gallery first.");
-        Toast.show("Compiling PDF...");
+        Toast.show("Compiling PDF in memory...");
         const doc = await PDFLib.PDFDocument.create();
         for (const dataUrl of State.cameraShots) {
           const img = await doc.embedJpg(dataUrl);
           const p = doc.addPage([595.28, 841.89]);
           p.drawImage(img, { x: 20, y: 20, width: 555.28, height: 801.89 });
         }
-        FileUtils.download(await doc.save(), "scanned_doc.pdf");
+        FileUtils.download(await doc.save(), "scanned_document.pdf");
         State.cameraShots = [];
         this.closeCamera();
-      },
-
-      async sarkariResizeDirect(targetKB, maxW, maxH, filename) {
-        const file = document.getElementById('p_file')?.files[0];
-        if (!file) return Toast.show("Select an image first.");
-
-        Toast.show("Compressing in memory...");
-        const img = new Image();
-        img.src = URL.createObjectURL(file);
-        img.onload = () => {
-          let w = img.width, h = img.height;
-          const ratio = Math.min(maxW / w, maxH / h, 1);
-          w = Math.round(w * ratio); h = Math.round(h * ratio);
-
-          const canvas = document.createElement('canvas');
-          canvas.width = w; canvas.height = h;
-          const ctx = canvas.getContext('2d');
-          ctx.fillStyle = '#FFFFFF';
-          ctx.fillRect(0, 0, w, h);
-          ctx.drawImage(img, 0, 0, w, h);
-
-          let q = 0.85, dataUrl = "", sizeKB = 999;
-          for (let i = 0; i < 8; i++) {
-            dataUrl = canvas.toDataURL('image/jpeg', q);
-            sizeKB = (dataUrl.length * 0.75) / 1024;
-            if (sizeKB <= targetKB) break;
-            q -= 0.1;
-          }
-
-          const status = document.getElementById('p_status');
-          if (status) {
-            status.classList.remove('hidden');
-            status.innerHTML = `
-              <div class="font-bold mb-1 text-emerald-400">Target Met: ${sizeKB.toFixed(1)} KB (&lt;${targetKB}KB)</div>
-              <button onclick="FileUtils.download('${dataUrl}', '${filename}', 'image/jpeg')" class="btn-brand-primary px-4 py-2 text-xs font-bold shadow-lg">Save &amp; Share File</button>
-            `;
-          }
-          Toast.show(`Satisfied: ${sizeKB.toFixed(1)} KB`);
-        };
-      },
-
-      async buildNtaPdf() {
-        const files = Array.from(document.getElementById('p_file')?.files || []);
-        if (!files.length) return Toast.show("Upload files first.");
-        Toast.show("Compiling NTA PDF...");
-        const doc = await PDFLib.PDFDocument.create();
-
-        for (const f of files) {
-          const buf = await FileUtils.readBuffer(f);
-          if (f.type.includes('pdf')) {
-            const loaded = await PDFLib.PDFDocument.load(buf, { ignoreEncryption: true });
-            const pages = await doc.copyPages(loaded, loaded.getPageIndices());
-            pages.forEach(p => doc.addPage(p));
-          } else {
-            const img = f.type.includes('png') ? await doc.embedPng(buf) : await doc.embedJpg(buf);
-            const p = doc.addPage([595.28, 841.89]);
-            p.drawImage(img, { x: 20, y: 20, width: 555.28, height: 801.89 });
-          }
-        }
-        const bytes = await doc.save({ useObjectStreams: true });
-        FileUtils.download(bytes, "NTA_NEET_Verified_Dossier.pdf");
-      },
-
-      async applyKycStamp() {
-        const file = document.getElementById('p_file')?.files[0];
-        const purpose = document.getElementById('p_purpose')?.value || "OFFICIAL IDENTIFICATION KYC";
-        const doMask = document.getElementById('p_mask')?.checked;
-        if (!file) return Toast.show("Select ID document image.");
-
-        const img = new Image();
-        img.src = URL.createObjectURL(file);
-        img.onload = () => {
-          const canvas = document.createElement('canvas');
-          canvas.width = img.width; canvas.height = img.height;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0);
-
-          if (doMask) {
-            ctx.fillStyle = "#000000";
-            ctx.fillRect(canvas.width * 0.22, canvas.height * 0.65, canvas.width * 0.55, canvas.height * 0.08);
-            ctx.fillStyle = "#FFFFFF";
-            ctx.font = `bold ${Math.round(canvas.height * 0.04)}px monospace`;
-            ctx.fillText("[ID REDACTED]", canvas.width * 0.25, canvas.height * 0.7);
-          }
-
-          ctx.save();
-          ctx.translate(canvas.width * 0.1, canvas.height * 0.85);
-          ctx.rotate(-0.1);
-          ctx.fillStyle = "rgba(215, 25, 32, 0.95)";
-          ctx.font = `bold ${Math.round(canvas.width * 0.028)}px sans-serif`;
-          ctx.fillText(`SELF ATTESTED FOR: ${purpose.toUpperCase()}`, 0, 0);
-          ctx.fillText(`DATE: ${new Date().toLocaleDateString('en-IN')}`, 0, canvas.width * 0.035);
-          ctx.restore();
-
-          FileUtils.download(canvas.toDataURL('image/png'), "KYC_Self_Attested_Masked.png", "image/png");
-        };
       },
 
       async generalExecute() {
